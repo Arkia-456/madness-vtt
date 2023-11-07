@@ -11,6 +11,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
     return {
       actor: baseData.actor,
       data: baseData.actor.system,
+      weapons: baseData.items.filter(item => item.type === 'weapon'),
       config: CONFIG.madness
     }
   }
