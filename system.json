@@ -1,0 +1,17 @@
+{
+  "name": "madness",
+  "title": "Madness",
+  "description": "Madness system",
+  "author": "Arkia",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "esmodules": [],
+  "styles": [],
+  "packs": [],
+  "languages": [],
+  "gridDistance": 2,
+  "gridUnits": "m"
+}
