@@ -24,6 +24,10 @@
         "maxEquipmentWeight": "Charge d'équipement max",
         "maxWeight": "Capacité de charge max"
       }
+    },
+    "item": {
+      "weight": "Poids",
+      "magazine": "Chargeur"
     }
   }
 }

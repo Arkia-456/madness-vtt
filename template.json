@@ -17,5 +17,14 @@
         "strength": 3
       }
     }
+  },
+  "Item": {
+    "types": [
+      "weapon"
+    ],
+    "weapon": {
+      "weight": 0,
+      "magazine": 0
+    }
   }
 }
