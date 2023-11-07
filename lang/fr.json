@@ -1,0 +1,29 @@
+{
+  "madness": {
+    "character": {
+      "firstName": "Prénom",
+      "age": "Âge",
+      "job": "Profession",
+      "race": "Race",
+      "affilitation": "Affilitation",
+      "baseStat": "Statistiques de base",
+      "secondaryStats": "Statistiques secondaires",
+      "modStats": "Modificateurs",
+      "actualStats": "Statistiques actuelles",
+      "stats": {
+        "intelligence": "Intelligence",
+        "constitution": "Physique",
+        "dexterity": "Dextérité",
+        "agility": "Agilité",
+        "strength": "Force",
+        "parryDamageReduction": "Réduction de dégâts en parade",
+        "critRate": "Taux de critique",
+        "evadeRade": "Chance d'esquive",
+        "maxMoveDistance": "Distance de déplacement max",
+        "initiativeBonus": "Bonus d'initiative",
+        "maxEquipmentWeight": "Charge d'équipement max",
+        "maxWeight": "Capacité de charge max"
+      }
+    }
+  }
+}

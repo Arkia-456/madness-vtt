@@ -1,0 +1,101 @@
+<form class="actor-sheet {{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <h1 class="charname">
+      {{actor.name}} {{data.lastName}}
+    </h1>
+    <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+    <table>
+      <tr>
+        <th>{{ localize "madness.character.firstName" }}</th>
+        <td><input name="name" type="text" value="{{actor.name}}" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "Name"}}</th>
+        <td><input name="data.lastName" type="text" value="{{data.lastName}}" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "madness.character.age"}}</th>
+        <td><input name="data.age" type="text" value="{{data.age}}" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "madness.character.race"}}</th>
+        <td><input name="data.race" type="text" value="{{data.race}}" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "madness.character.job"}}</th>
+        <td><input name="data.job" type="text" value="{{data.job}}" /></td>
+      </tr>
+      <tr>
+        <th>{{localize "madness.character.affilitation"}}</th>
+        <td><input name="data.affilitation" type="text" value="{{data.affilitation}}" /></td>
+      </tr>
+    </table>
+  </header>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">{{localize "madness.character.baseStat"}}</th>
+          <th colspan="1">{{localize "madness.character.modStats"}}</th>
+          <th colspan="2">{{localize "madness.character.actualStats"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{localize "madness.character.stats.intelligence"}}</th>
+          <td><input name="data.stats.intelligence.base" type="text" value="{{data.stats.intelligence.base}}" data-dtype="Number" /></td>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.constitution"}}</th>
+          <td><input name="data.stats.constitution.base" type="text" value="{{data.stats.constitution.base}}" data-dtype="Number" /></td>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.dexterity"}}</th>
+          <td><input name="data.stats.dexterity.base" type="text" value="{{data.stats.dexterity.base}}" data-dtype="Number" /></td>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.agility"}}</th>
+          <td><input name="data.stats.agility.base" type="text" value="{{data.stats.agility.base}}" data-dtype="Number" /></td>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.strength"}}</th>
+          <td><input name="data.stats.strength.base" type="text" value="{{data.stats.strength.base}}" data-dtype="Number" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">{{localize "madness.character.secondaryStats"}}</th>
+          <th colspan="1">{{localize "madness.character.modStats"}}</th>
+          <th colspan="2">{{localize "madness.character.actualStats"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{localize "madness.character.stats.parryDamageReduction"}}</th>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.critRate"}}</th>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.evadeRade"}}</th>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.maxMoveDistance"}}</th>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.initiativeBonus"}}</th>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.maxEquipmentWeight"}}</th>
+        </tr>
+        <tr>
+          <th>{{localize "madness.character.stats.maxWeight"}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

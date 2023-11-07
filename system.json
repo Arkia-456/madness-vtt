@@ -8,10 +8,18 @@
     "minimum": "11",
     "verified": "11"
   },
-  "esmodules": [],
+  "esmodules": [
+    "madness.js"
+  ],
   "styles": [],
   "packs": [],
-  "languages": [],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
   "gridDistance": 2,
   "gridUnits": "m"
 }

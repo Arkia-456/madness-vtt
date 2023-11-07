@@ -1,0 +1,21 @@
+{
+  "Actor": {
+    "types": [
+      "character"
+    ],
+    "character": {
+      "lastName": "",
+      "age": 0,
+      "job": "",
+      "race": "",
+      "affilitation": "",
+      "stats": {
+        "intelligence": 3,
+        "constitution": 3,
+        "dexterity": 3,
+        "agility": 3,
+        "strength": 3
+      }
+    }
+  }
+}
