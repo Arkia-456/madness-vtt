@@ -27,6 +27,8 @@ export default class MadnessCharacterSheet extends ActorSheet {
   activateListeners(html) {
 
     if (this.actor.isOwner) {
+      html.find('.item-delete').click(this._onItemDelete.bind(this));
+  
       new ContextMenu(html, '.weapon-card', this.itemContextMenu);
     }
 
@@ -37,4 +39,12 @@ export default class MadnessCharacterSheet extends ActorSheet {
     const item = this.actor.items.get(element.data('item-id'));
     item.sheet.render(true);
   }
+
+  _onItemDelete(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const itemId = element.closest('.item').dataset.itemId;
+    return this.actor.deleteEmbeddedDocuments('Item', [itemId])
+  }
+
 }
