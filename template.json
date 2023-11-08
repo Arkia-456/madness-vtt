@@ -10,11 +10,26 @@
       "race": "",
       "affilitation": "",
       "stats": {
-        "intelligence": 3,
-        "constitution": 3,
-        "dexterity": 3,
-        "agility": 3,
-        "strength": 3
+        "intelligence": {
+          "primary": true,
+          "base": 3
+        },
+        "constitution": {
+          "primary": true,
+          "base": 3
+        },
+        "dexterity": {
+          "primary": true,
+          "base": 3
+        },
+        "agility": {
+          "primary": true,
+          "base": 3
+        },
+        "strength": {
+          "primary": true,
+          "base": 3
+        }
       }
     }
   },

@@ -1,3 +1,4 @@
+import MadnessActor from './module/MadnessActor.js';
 import MadnessCharacterSheet from './module/sheets/MadnessCharacterSheet.js';
 import MadnessItemSheet from './module/sheets/MadnessItemSheet.js';
 
@@ -9,6 +10,9 @@ async function preloadHandlebarsTemplates() {
 }
 
 Hooks.once('init', () => {
+
+  CONFIG.Actor.documentClass = MadnessActor;
+
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('madness', MadnessCharacterSheet, { makeDefault: true });
 
