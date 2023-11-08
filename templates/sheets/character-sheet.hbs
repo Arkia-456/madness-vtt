@@ -1,9 +1,9 @@
-<form class="actor-sheet {{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
   <header class="sheet-header">
     <h1 class="charname">
       {{actor.name}} {{system.lastName}}
     </h1>
-    <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+    <img class="charpicture" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
     <table>
       <tr>
         <th>{{ localize "madness.character.firstName" }}</th>

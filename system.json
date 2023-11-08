@@ -11,7 +11,9 @@
   "esmodules": [
     "madness.js"
   ],
-  "styles": [],
+  "styles": [
+    "madness.css"
+  ],
   "packs": [],
   "languages": [
     {
