@@ -9,7 +9,7 @@ export default class MadnessItemSheet extends ItemSheet {
     console.log(baseData);
     return {
       item: baseData.item,
-      data: baseData.item.system,
+      system: baseData.item.system,
       config: CONFIG.madness
     }
   }
