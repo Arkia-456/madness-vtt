@@ -18,7 +18,7 @@
         "strength": "Force",
         "parryDamageReduction": "Réduction de dégâts en parade",
         "critRate": "Taux de critique",
-        "evadeRade": "Chance d'esquive",
+        "evadeRate": "Chance d'esquive",
         "maxMoveDistance": "Distance de déplacement max",
         "initiativeBonus": "Bonus d'initiative",
         "maxEquipmentWeight": "Charge d'équipement max",
