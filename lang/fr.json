@@ -28,6 +28,9 @@
     "item": {
       "weight": "Poids",
       "magazine": "Chargeur"
+    },
+    "sheet": {
+      "details": "Détails"
     }
   }
 }
