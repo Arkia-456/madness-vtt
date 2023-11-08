@@ -103,22 +103,14 @@
       </tbody>
     </table>
   </div>
-  <section>
-    <table>
-      <thead>
-        <th>{{localize "Name"}}</th>
-        <th>{{localize "madness.item.weight"}}</th>
-        <th>{{localize "madness.item.magazine"}}</th>
-      </thead>
-      <tbody>
-        {{#each weapons as |weapon id|}}
-          <tr class="weapon-card item" data-item-id="{{weapon._id}}">
-            <td>{{name}}</td>
-            <td>{{system.weight}}</td>
-            <td>{{system.magazine}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <section class="container">
+      <div class="row">
+        <div>{{localize "Name"}}</div>
+        <div>{{localize "madness.item.weight"}}</div>
+        <div>{{localize "madness.item.magazine"}}</div>
+      </div>
+      {{#each weapons as |weapon id|}}
+        {{> 'systems/madness/templates/partials/weapon-card.hbs' weapon inSheet=true}}
+      {{/each}}
   </section>
 </form>
