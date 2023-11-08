@@ -30,7 +30,8 @@
       "magazine": "Chargeur"
     },
     "sheet": {
-      "details": "Détails"
+      "details": "Détails",
+      "delete": "Supprimer"
     }
   }
 }

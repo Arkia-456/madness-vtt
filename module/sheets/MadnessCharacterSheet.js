@@ -12,7 +12,13 @@ export default class MadnessCharacterSheet extends ActorSheet {
       name: game.i18n.localize('madness.sheet.details'),
       icon: '<i class="fas fa-eye"></i>',
       callback: this._onContextMenuItemView.bind(this)
-    }
+    },
+    {
+      name: game.i18n.localize('madness.sheet.delete'),
+      icon: '<i class="fas fa-trash"></i>',
+      condition: this._isOwner.bind(this),
+      callback: this._onContextMenuItemDelete.bind(this)
+    },
   ];
 
   getData() {
@@ -28,7 +34,6 @@ export default class MadnessCharacterSheet extends ActorSheet {
   activateListeners(html) {
 
     if (this.actor.isOwner) {
-      html.find('.item-delete').click(this._onItemDelete.bind(this));
   
       new ContextMenu(html, '.weapon-card', this.itemContextMenu);
     }
@@ -36,16 +41,18 @@ export default class MadnessCharacterSheet extends ActorSheet {
     super.activateListeners(html);
   }
 
+  _isOwner() {
+    return this.actor.isOwner;
+  }
+
   _onContextMenuItemView(element) {
     const item = this.actor.items.get(element.data('item-id'));
     item.sheet.render(true);
   }
 
-  _onItemDelete(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const itemId = element.closest('.item').dataset.itemId;
-    return this.actor.deleteEmbeddedDocuments('Item', [itemId])
+  _onContextMenuItemDelete(element) {
+    const itemId = element.data('item-id');
+    return this.actor.deleteEmbeddedDocuments('Item', [itemId]);
   }
 
 }
