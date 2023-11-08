@@ -10,7 +10,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
     const baseData = super.getData();
     return {
       actor: baseData.actor,
-      data: baseData.actor.system,
+      system: baseData.actor.system,
       weapons: baseData.items.filter(item => item.type === 'weapon'),
       config: CONFIG.madness
     }
