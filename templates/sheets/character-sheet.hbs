@@ -99,15 +99,21 @@
     </table>
   </div>
   <section>
-    {{#each weapons as |weapon id|}}
-    <div>
-      <div>
-        <p>{{name}}</p>
-      </div>
-      <div>
-        <p>{{data.weight}}/{{data.magazine}}</p>
-      </div>
-    </div>
-    {{/each}}
+    <table>
+      <thead>
+        <th>{{localize "Name"}}</th>
+        <th>{{localize "madness.item.weight"}}</th>
+        <th>{{localize "madness.item.magazine"}}</th>
+      </thead>
+      <tbody>
+        {{#each weapons as |weapon id|}}
+          <tr class="weapon-card item" data-item-id="{{weapon._id}}">
+            <td>{{name}}</td>
+            <td>{{system.weight}}</td>
+            <td>{{system.magazine}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </section>
 </form>
