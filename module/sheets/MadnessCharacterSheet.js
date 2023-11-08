@@ -1,3 +1,6 @@
+import MadnessDice from '../MadnessDice.js';
+import MadnessUtils from '../MadnessUtils.js';
+
 export default class MadnessCharacterSheet extends ActorSheet {
 
   static get defaultOptions() {
@@ -23,17 +26,19 @@ export default class MadnessCharacterSheet extends ActorSheet {
 
   getData() {
     const baseData = super.getData();
-    return {
+    const sheetData = {
       actor: baseData.actor,
       system: baseData.actor.system,
       weapons: baseData.items.filter(item => item.type === 'weapon'),
       config: CONFIG.madness
-    }
+    };
+    return sheetData;
   }
 
   activateListeners(html) {
 
     if (this.actor.isOwner) {
+      html.find('.stat-roll').click(this._onStatRoll.bind(this));
   
       new ContextMenu(html, '.weapon-card', this.itemContextMenu);
     }
@@ -53,6 +58,13 @@ export default class MadnessCharacterSheet extends ActorSheet {
   _onContextMenuItemDelete(element) {
     const itemId = element.data('item-id');
     return this.actor.deleteEmbeddedDocuments('Item', [itemId]);
+  }
+
+  _onStatRoll(event) {
+    MadnessDice.statCheck({
+      statValue: MadnessUtils.convertToInt(event.currentTarget.dataset.statvalue),
+      modValue: MadnessUtils.convertToInt(event.currentTarget.dataset.modvalue)
+    });
   }
 
 }
