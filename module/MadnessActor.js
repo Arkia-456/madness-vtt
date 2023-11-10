@@ -2,50 +2,53 @@ import MadnessUtils from './MadnessUtils.js';
 
 export default class MadnessActor extends Actor {
 
-  prepareData() {
-    super.prepareData();
-    const stats = this.system.stats;
-    this._calculateTotalPrimaryStats(stats);
-    this._calculateSecondaryStats(stats);
-    this._calculateTotalSecondaryStats(stats);
+  prepareBaseData() {
+    super.prepareBaseData();
+    this._calculateStats();
   }
 
-  _calculateTotalPrimaryStats(stats) {
-    for (const [key, value] of Object.entries(stats)) {
+  _calculateStats() {
+    this._calculateTotalPrimaryStats();
+    this._calculateSecondaryStats();
+    this._calculateTotalSecondaryStats();
+  }
+
+  _calculateTotalPrimaryStats() {
+    for (const [key, value] of Object.entries(this.system.stats)) {
       if (value.primary) {
-        stats[key].total = MadnessUtils.convertToInt(stats[key].base) + MadnessUtils.convertToInt(stats[key].mod)
+        this.system.stats[key].total = MadnessUtils.convertToInt(this.system.stats[key].base) + MadnessUtils.convertToInt(this.system.stats[key].mod);
       }
     }
   }
 
-  _calculateSecondaryStats(stats) {
-    stats.parryDamageReduction = {
-      base: this._calculateParryDamageReduction(MadnessUtils.convertToInt(stats.constitution.total))
+  _calculateSecondaryStats() {
+    this.system.stats.parryDamageReduction = {
+      base: this._calculateParryDamageReduction(MadnessUtils.convertToInt(this.system.stats.constitution.total))
     }
-    stats.critRate = {
-      base: this._calculateCritRate(MadnessUtils.convertToInt(stats.dexterity.total))
+    this.system.stats.critRate = {
+      base: this._calculateCritRate(MadnessUtils.convertToInt(this.system.stats.dexterity.total))
     }
-    stats.evadeRate = {
-      base: this._calculateEvadeRate(MadnessUtils.convertToInt(stats.agility.total))
+    this.system.stats.evadeRate = {
+      base: this._calculateEvadeRate(MadnessUtils.convertToInt(this.system.stats.agility.total))
     }
-    stats.maxMoveDistance = {
-      base: this._calculateMaxMoveDistance(MadnessUtils.convertToInt(stats.agility.total))
+    this.system.stats.maxMoveDistance = {
+      base: this._calculateMaxMoveDistance(MadnessUtils.convertToInt(this.system.stats.agility.total))
     }
-    stats.initiativeBonus = {
-      base: this._calculateInitiativeBonus(MadnessUtils.convertToInt(stats.agility.total))
+    this.system.stats.initiativeBonus = {
+      base: this._calculateInitiativeBonus(MadnessUtils.convertToInt(this.system.stats.agility.total))
     }
-    stats.maxEquipmentWeight = {
-      base: this._calculateMaxEquipmentWeight(MadnessUtils.convertToInt(stats.strength.total))
+    this.system.stats.maxEquipmentWeight = {
+      base: this._calculateMaxEquipmentWeight(MadnessUtils.convertToInt(this.system.stats.strength.total))
     }
-    stats.maxWeight = {
-      base: this._calculateMaxWeight(MadnessUtils.convertToInt(stats.strength.total))
+    this.system.stats.maxWeight = {
+      base: this._calculateMaxWeight(MadnessUtils.convertToInt(this.system.stats.strength.total))
     }
   }
 
-  _calculateTotalSecondaryStats(stats) {
-    for (const [key, value] of Object.entries(stats)) {
+  _calculateTotalSecondaryStats() {
+    for (const [key, value] of Object.entries(this.system.stats)) {
       if (!value.primary) {
-        stats[key].total = MadnessUtils.convertToInt(stats[key].base) + MadnessUtils.convertToInt(stats[key].mod)
+        this.system.stats[key].total = MadnessUtils.convertToInt(this.system.stats[key].base) + MadnessUtils.convertToInt(this.system.stats[key].mod);
       }
     }
   }
