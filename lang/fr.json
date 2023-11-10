@@ -59,7 +59,8 @@
       "actions": {
         "attack": "Attaquer",
         "defend": "Défendre",
-        "dodge": "Esquiver"
+        "dodge": "Esquiver",
+        "critical": "Jet de critique"
       },
       "attack": {
         "title": "Attaque avec {itemName}",
@@ -68,7 +69,10 @@
           "title": "Résumé de l'attaque",
           "damage": "{name} a reçu {damage} dégâts.",
           "downedCharacter": "{name} est à terre après avoir reçu {damage} dégâts."
-        }
+        },
+        "criticalSuccess": "Réussite critique !",
+        "criticalFail": "Echec critique !",
+        "notACrit": "Pas de critique"
       }
     }
   }

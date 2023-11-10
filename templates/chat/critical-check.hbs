@@ -1,0 +1,16 @@
+<div class="critical-check">
+    <p>
+      {{#if isCriticalSuccess }}
+        {{localize "madness.chat.attack.criticalSuccess"}}
+      {{else}}
+        {{#if isCriticalFail}}
+          {{localize "madness.chat.attack.criticalFail"}}
+        {{else}}
+          {{localize "madness.chat.attack.notACrit"}}
+        {{/if}}
+      {{/if}}
+    </p>
+    <div>
+      {{roll.total}}
+    </div>
+</div>
