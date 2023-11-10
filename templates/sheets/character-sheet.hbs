@@ -189,6 +189,15 @@
     </table>
   </div>
   <section class="container">
+    <div class="row">
+      <div>{{localize "Name"}}</div>
+      <div>{{localize "madness.cost"}}</div>
+    </div>
+    {{#each skills as |skill id|}}
+      {{> 'systems/madness/templates/partials/skill-card.hbs' skill inSheet=true}}
+    {{/each}}
+  </section>
+  <section class="container">
       <div class="row">
         <div>{{localize "Name"}}</div>
         <div>{{localize "madness.item.weight"}}</div>

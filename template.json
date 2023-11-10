@@ -42,8 +42,12 @@
   },
   "Item": {
     "types": [
+      "skill",
       "weapon"
     ],
+    "skill": {
+      "cost": 0,
+    },
     "weapon": {
       "weight": 0,
       "magazine": 0
