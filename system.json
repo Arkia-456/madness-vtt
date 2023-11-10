@@ -23,5 +23,6 @@
     }
   ],
   "gridDistance": 2,
-  "gridUnits": "m"
+  "gridUnits": "m",
+  "initiative": "1d10 + @stats.agility.total"
 }
