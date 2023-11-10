@@ -1,8 +1,115 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="sheet-header">
     <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
-    <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    <h1>
+      {{#if user.isGM}}
+      <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+      {{else}}
+      {{item.name}}
+      {{/if}}
+    </h1>
   </header>
-  <p>{{ localize "madness.item.cost" }} : <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="Number"/></p>
-  <p>{{ localize "madness.item.requirements" }} : <input name="system.requirements.ome" type="text" value="{{system.requirements.ome}}" data-dtype="Number"/></p>
+  <h3>{{localize "madness.item.description"}}</h3>
+  {{#if user.isGM}}
+    <input name="system.description" type="text" value="{{system.description}}" placeholder="Description"/>
+  {{else}}
+    <p>{{system.description}}</p>
+  {{/if}}
+  <h3>{{localize "madness.item.requirements"}}</h3>
+  {{#if user.isGM}}
+    <table>
+      <thead>
+        <tr>
+          <th>{{localize "madness.character.magic.ome"}}</th>
+          <th>{{localize "madness.character.magic.erah"}}</th>
+          <th>{{localize "madness.character.magic.sith"}}</th>
+          <th>{{localize "madness.character.magic.shor"}}</th>
+          <th>{{localize "madness.character.magic.teruuk"}}</th>
+          <th>{{localize "madness.character.magic.doka"}}</th>
+          <th>{{localize "madness.character.magic.natah"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input name="system.requirements.ome" type="text" value="{{system.requirements.ome}}" data-dtype="Number" /></td>
+          <td><input name="system.requirements.erah" type="text" value="{{system.requirements.erah}}" data-dtype="Number" /></td>
+          <td><input name="system.requirements.sith" type="text" value="{{system.requirements.sith}}" data-dtype="Number" /></td>
+          <td><input name="system.requirements.shor" type="text" value="{{system.requirements.shor}}" data-dtype="Number" /></td>
+          <td><input name="system.requirements.teruuk" type="text" value="{{system.requirements.teruuk}}" data-dtype="Number" /></td>
+          <td><input name="system.requirements.doka" type="text" value="{{system.requirements.doka}}" data-dtype="Number" /></td>
+          <td><input name="system.requirements.natah" type="text" value="{{system.requirements.natah}}" data-dtype="Number" /></td>
+        </tr>
+      </tbody>
+    </table>
+  {{else}}
+    {{#if system.requirements.ome}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.ome"}} : {{system.requirements.ome}}</p>
+    {{/if}}
+    {{#if system.requirements.erah}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.erah"}} : {{system.requirements.erah}}</p>
+    {{/if}}
+    {{#if system.requirements.sith}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.sith"}} : {{system.requirements.sith}}</p>
+    {{/if}}
+    {{#if system.requirements.shor}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.shor"}} : {{system.requirements.shor}}</p>
+    {{/if}}
+    {{#if system.requirements.teruuk}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.teruuk"}} : {{system.requirements.teruuk}}</p>
+    {{/if}}
+    {{#if system.requirements.doka}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.doka"}} : {{system.requirements.doka}}</p>
+    {{/if}}
+    {{#if system.requirements.natah}}
+       <p>{{localize "madness.item.requirements.title"}} {{localize "madness.character.magic.natah"}} : {{system.requirements.natah}}</p>
+    {{/if}}
+  {{/if}}
+  <h3>{{localize "madness.item.damageDice"}}</h3>
+  {{#if user.isGM}}
+  <table>
+    <thead>
+      <tr>
+        <th>{{localize "madness.character.stats.intelligence"}}</th>
+        <th>{{localize "madness.character.stats.constitution"}}</th>
+        <th>{{localize "madness.character.stats.dexterity"}}</th>
+        <th>{{localize "madness.character.stats.agility"}}</th>
+        <th>{{localize "madness.character.stats.strength"}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input name="system.damageRoll.intelligence" type="text" value="{{system.damageRoll.intelligence}}" data-dtype="Number" /></td>
+        <td><input name="system.damageRoll.constitution" type="text" value="{{system.damageRoll.constitution}}" data-dtype="Number" /></td>
+        <td><input name="system.damageRoll.dexterity" type="text" value="{{system.damageRoll.dexterity}}" data-dtype="Number" /></td>
+        <td><input name="system.damageRoll.agility" type="text" value="{{system.damageRoll.agility}}" data-dtype="Number" /></td>
+        <td><input name="system.damageRoll.strength" type="text" value="{{system.damageRoll.strength}}" data-dtype="Number" /></td>
+      </tr>
+    </tbody>
+  </table>
+  {{else}}
+    {{#if system.damageRoll.intelligence}}
+      <p>{{system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}}</p>
+    {{/if}}
+    {{#if system.damageRoll.constitution}}
+      <p>{{system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}}</p>
+    {{/if}}
+    {{#if system.damageRoll.dexterity}}
+      <p>{{system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}}</p>
+    {{/if}}
+    {{#if system.damageRoll.agility}}
+      <p>{{system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}}</p>
+    {{/if}}
+    {{#if system.damageRoll.strength}}
+      <p>{{system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}}</p>
+    {{/if}}
+  {{/if}}
+  {{#if user.isGM}}
+    <p>{{localize "madness.item.damage"}} : <input name="system.damage" type="text" value="{{system.damage}}" data-dtype="Number" /></p>
+    <p>{{localize "madness.range"}} : <input name="system.range" type="text" value="{{system.range}}" data-dtype="Number" /></p>
+    <p>{{ localize "madness.item.skill.manaCost" }} : <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="Number"/></p>
+  {{else}}
+    <p>{{localize "madness.item.damage"}} : {{system.damage}}</p>
+    <p>{{localize "madness.range"}} : {{system.range}}</p>
+    <p>{{ localize "madness.item.skill.manaCost" }} : {{system.cost}}</p>
+  {{/if}}
 </form>

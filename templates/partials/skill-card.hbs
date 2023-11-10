@@ -1,5 +1,21 @@
 <div class="row skill-card item" data-item-id="{{_id}}" data-item-damage="{{#if roll}}{{roll.total}}{{else}}{{system.damage}}{{/if}}">
   <div class="{{#if inSheet}} item-roll {{/if}}">{{name}}</div>
   <div>{{system.cost}}</div>
-  <div>{{system.damage}}</div>
+  <div>
+    {{#if system.damageRoll.intelligence}}
+      {{system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}} +
+    {{/if}}
+    {{#if system.damageRoll.constitution}}
+      {{system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}} +
+    {{/if}}
+    {{#if system.damageRoll.dexterity}}
+      {{system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}} +
+    {{/if}}
+    {{#if system.damageRoll.agility}}
+      {{system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}} +
+    {{/if}}
+    {{#if system.damageRoll.strength}}
+      {{system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}} +
+    {{/if}}
+    {{system.damage}}</div>
 </div>

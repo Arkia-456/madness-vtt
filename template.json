@@ -73,8 +73,18 @@
         "erah": 1,
         "sith": 1,
         "shor": 1,
-        "teruuk": 1
-      }
+        "teruuk": 1,
+        "doka": 1,
+        "natah": 1
+      },
+      "damageRoll": {
+        "intelligence": 0,
+        "constitution": 0,
+        "dexterity": 0,
+        "agility": 0,
+        "strength": 0
+      },
+      "range": 1
     },
     "weapon": {
       "weight": 0,

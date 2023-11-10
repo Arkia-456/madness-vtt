@@ -40,7 +40,15 @@
     },
     "item": {
       "weight": "Poids",
-      "magazine": "Chargeur"
+      "magazine": "Chargeur",
+      "damage": "Dégâts",
+      "damageDice": "Jets de dégâts",
+      "description": "Description",
+      "range": "Portée",
+      "requirements": "Prérequis",
+      "skill": {
+        "manaCost": "Coût en mana"
+      }
     },
     "sheet": {
       "details": "Détails",
