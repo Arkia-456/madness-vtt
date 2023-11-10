@@ -23,6 +23,17 @@
         "initiativeBonus": "Bonus d'initiative",
         "maxEquipmentWeight": "Charge d'équipement max",
         "maxWeight": "Capacité de charge max"
+      },
+      "magnusArts": "Arts de Magnus",
+      "combinedMagnusArts": "Arts de Magnus combinés",
+      "magic": {
+        "ome": "Omé",
+        "erah": "Erah",
+        "sith": "Sith",
+        "shor": "Shor",
+        "teruuk": "Teruuk",
+        "doka": "Doka",
+        "natah": "Natah"
       }
     },
     "item": {

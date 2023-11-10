@@ -30,6 +30,13 @@
           "primary": true,
           "base": 3
         }
+      },
+      "magic": {
+        "ome": 1,
+        "erah": 1,
+        "sith": 1,
+        "shor": 1,
+        "teruuk": 1
       }
     }
   },

@@ -5,6 +5,20 @@ export default class MadnessActor extends Actor {
   prepareBaseData() {
     super.prepareBaseData();
     this._calculateStats();
+    this._calculateMagic();
+  }
+
+  _calculateMagic() {
+    this._calculateMagicDoka();
+    this._calculateMagicNatah();
+  }
+
+  _calculateMagicDoka() {
+    this.system.magic.doka = Math.min(MadnessUtils.convertToInt(this.system.magic.ome), MadnessUtils.convertToInt(this.system.magic.teruuk));
+  }
+
+  _calculateMagicNatah() {
+    this.system.magic.natah = Math.min(...Object.values(this.system.magic));
   }
 
   _calculateStats() {
