@@ -2,15 +2,44 @@ import MadnessUtils from './MadnessUtils.js';
 
 export default class MadnessActor extends Actor {
 
+  isInit = false;
+
   prepareBaseData() {
     super.prepareBaseData();
     this._calculateStats();
     this._calculateMagic();
+    this._calculateMaxHealthPoints();
+    this._calculateMaxManaPoints();
+    this._calculateActualHealthPoints();
+    this._calculateActualManaPoints();
+    if (!this.isInit) {
+      this.isInit = true;
+    }
   }
 
   prepareEmbeddedDocuments() {
     super.prepareEmbeddedDocuments();
     this._getCommonMagicSkills();
+  }
+
+  _calculateMaxHealthPoints() {
+    this.system.healthPoints.max = this.system.healthPoints.base + ( 3 * this.system.stats.constitution.total );
+  }
+
+  _calculateActualHealthPoints() {
+    if (!this.isInit) {
+      this.system.healthPoints.value = this.system.healthPoints.max - this.system.healthPoints.missing;
+    }
+  }
+
+  _calculateMaxManaPoints() {
+    this.system.manaPoints.max = this.system.manaPoints.base + ( 3 * this.system.stats.intelligence.total );
+  }
+
+  _calculateActualManaPoints() {
+    if (!this.isInit) {
+      this.system.manaPoints.value = this.system.manaPoints.max - this.system.manaPoints.missing;
+    }
   }
 
   _getCommonMagicSkills() {

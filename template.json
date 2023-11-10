@@ -9,6 +9,18 @@
       "job": "",
       "race": "",
       "affilitation": "",
+      "healthPoints": {
+        "base": 15,
+        "value": 15,
+        "missing": 0,
+        "max": 15
+      },
+      "manaPoints": {
+        "base": 15,
+        "value": 15,
+        "missing": 0,
+        "max": 15
+      },
       "stats": {
         "intelligence": {
           "primary": true,
