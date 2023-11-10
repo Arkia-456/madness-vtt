@@ -8,6 +8,34 @@ export default class MadnessActor extends Actor {
     this._calculateMagic();
   }
 
+  prepareEmbeddedDocuments() {
+    super.prepareEmbeddedDocuments();
+    this._getCommonMagicSkills();
+  }
+
+  _getCommonMagicSkills() {
+    Array.from(game.items.values())
+      .filter(item => item.type === 'skill' && this._checkRequirements(item))
+      .forEach(skill => {
+        if (!this.items.find(item => item.name === skill.name)) {
+          this.createEmbeddedDocuments('Item', [skill]);
+        }
+      });
+  }
+
+  _checkRequirements(skill) {
+    let requirementMet = true;
+    const skillRequirements = skill.system.requirements;
+    for (const [key, value] of Object.entries(skillRequirements)) {
+      const actorMagicLevel = this.system.magic[key];
+      if (actorMagicLevel < value) {
+        requirementMet = false;
+        break;
+      }
+    }
+    return requirementMet;
+  }
+
   _calculateMagic() {
     this._calculateMagicDoka();
     this._calculateMagicNatah();

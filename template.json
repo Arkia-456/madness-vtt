@@ -47,6 +47,13 @@
     ],
     "skill": {
       "cost": 0,
+      "requirements": {
+        "ome": 1,
+        "erah": 1,
+        "sith": 1,
+        "shor": 1,
+        "teruuk": 1
+      }
     },
     "weapon": {
       "weight": 0,
