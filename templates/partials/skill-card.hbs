@@ -1,4 +1,5 @@
-<div class="row skill-card item" data-item-id="{{_id}}">
+<div class="row skill-card item" data-item-id="{{_id}}" data-item-damage="{{#if roll}}{{roll.total}}{{else}}{{system.damage}}{{/if}}">
   <div class="{{#if inSheet}} item-roll {{/if}}">{{name}}</div>
   <div>{{system.cost}}</div>
+  <div>{{system.damage}}</div>
 </div>

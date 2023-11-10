@@ -27,3 +27,4 @@ Hooks.once('init', () => {
 });
 
 Hooks.on('renderChatLog', (app, html, data) => MadnessChat.addChatListeners(html));
+Hooks.on('getChatLogEntryContext', MadnessChat.addChatMessageContextOptions);

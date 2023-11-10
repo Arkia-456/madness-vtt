@@ -22,6 +22,18 @@ export default class MadnessActor extends Actor {
     this._getCommonMagicSkills();
   }
 
+  async applyDamage(damage) {
+    const remainingHealthPoints = this.system.healthPoints.value - damage;
+    await this.update({
+      'system.healthPoints.value': remainingHealthPoints,
+      'system.healthPoints.missing': this.system.healthPoints.missing + damage
+    });
+    const downed = remainingHealthPoints === 0;
+    return {
+      downed: downed
+    }
+  }
+
   _calculateMaxHealthPoints() {
     this.system.healthPoints.max = this.system.healthPoints.base + ( 3 * this.system.stats.constitution.total );
   }

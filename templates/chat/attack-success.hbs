@@ -1,0 +1,7 @@
+<div>
+  <h2>{{localize "madness.chat.attack.summary.title"}}</h2>
+  <p>{{localize "madness.chat.attack.summary.damage" name=actor.name damage=damage}}</p>
+  {{#if downed}}
+  <p>{{localize "madness.chat.attack.summary.downedCharacter" name=actor.name damage=damage}}</p>
+  {{/if}}
+</div>
