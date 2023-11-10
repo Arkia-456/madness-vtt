@@ -1,4 +1,5 @@
 import MadnessActor from './module/MadnessActor.js';
+import MadnessChat from './module/MadnessChat.js';
 import MadnessItem from './module/MadnessItem.js';
 import MadnessCharacterSheet from './module/sheets/MadnessCharacterSheet.js';
 import MadnessItemSheet from './module/sheets/MadnessItemSheet.js';
@@ -24,3 +25,5 @@ Hooks.once('init', () => {
 
   preloadHandlebarsTemplates();
 });
+
+Hooks.on('renderChatLog', (app, html, data) => MadnessChat.addChatListeners(html));

@@ -45,7 +45,16 @@
       "skill",
       "weapon"
     ],
+    "templates": {
+      "itemCommon": {
+        "description": "",
+        "damage": 0
+      }
+    },
     "skill": {
+      "templates": [
+        "itemCommon"
+      ],
       "cost": 0,
       "requirements": {
         "ome": 1,

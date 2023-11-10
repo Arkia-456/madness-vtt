@@ -43,6 +43,15 @@
     "sheet": {
       "details": "Détails",
       "delete": "Supprimer"
+    },
+    "chat": {
+      "actorUseItem": "{actorName} utilise {itemName}",
+      "actions": {
+        "attack": "Attaquer"
+      },
+      "attack": {
+        "title": "Attaque avec {itemName}"
+      }
     }
   }
 }

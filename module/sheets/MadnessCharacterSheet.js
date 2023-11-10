@@ -39,6 +39,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
   activateListeners(html) {
 
     if (this.actor.isOwner) {
+      html.find('.item-roll').click(this._onItemRoll.bind(this));
       html.find('.stat-roll').click(this._onStatRoll.bind(this));
   
       new ContextMenu(html, '.weapon-card', this.itemContextMenu);
@@ -68,4 +69,11 @@ export default class MadnessCharacterSheet extends ActorSheet {
     });
   }
 
+
+  _onItemRoll(event) {
+    const element = event.currentTarget;
+    const itemId = element.closest('.item').dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    item.roll();
+  }
 }

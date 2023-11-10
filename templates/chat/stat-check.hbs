@@ -1,0 +1,11 @@
+<div class="statCheck {{#if isAttack}}attack{{/if}}">
+  {{#if isAttack}}
+    <h2>{{localize "madness.chat.attack.title" itemName=item.name}}</h2>
+    {{#if item}}
+      {{> 'systems/madness/templates/partials/skill-card.hbs' item=item roll=roll}}
+    {{/if}}
+  {{/if}}
+    <div>
+      {{roll.total}}
+    </div>
+</div>
