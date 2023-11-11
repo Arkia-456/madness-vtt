@@ -9,7 +9,7 @@ export default class MadnessDice {
     extraMessageData = {}
   } = {}) {
 
-    const messageTemplate = 'systems/madness/templates/chat/stat-check.hbs';
+    const messageTemplate = 'systems/madness/templates/chat/task-check.hbs';
 
     const rollResult = await new Roll(rollFormula, rollData).roll({ async: true });
 

@@ -22,7 +22,7 @@ export default class MadnessChat {
   }
 
   static addChatMessageContextOptions(html, options) {
-    const canDefend = (li) => canvas.tokens.controlled.length && li.find('.statCheck.attack').length;
+    const canDefend = (li) => canvas.tokens.controlled.length && li.find('.task-check.attack').length;
     options.push(
       {
         name: game.i18n.localize('madness.chat.actions.defend'),
