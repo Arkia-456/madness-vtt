@@ -4,6 +4,7 @@ export default class MadnessDice {
     actor = null,
     statValue = 0,
     modValue = 0,
+    rollFormula = '',
     sendMessage = true,
     isAttack = false,
     extraMessageData = {}
@@ -11,14 +12,21 @@ export default class MadnessDice {
 
     const messageTemplate = 'systems/madness/templates/chat/stat-check.hbs';
 
-    const rollFormula = '1d@value';
-    const rollData = {
-      value: statValue + modValue
-    };
+    const formula = rollFormula ? rollFormula : '1d@value';
     
-    if (!rollData.value || rollData.value <= 0) return;
+    let rollData = {};
 
-    const rollResult = await new Roll(rollFormula, rollData).roll({ async: true });
+    if ((statValue || modValue)) {
+
+      rollData = {
+        value: statValue + modValue
+      };
+
+      if (!rollData.value || rollData.value <= 0) return;
+
+    }
+
+    const rollResult = await new Roll(formula, rollData).roll({ async: true });
 
     if (sendMessage) {
       MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
@@ -31,11 +39,16 @@ export default class MadnessDice {
   }
 
   static async attack(attacker, type, skill) {
-    const statName = type === 'skill' ? 'intelligence' : 'strength';
+    let rollFormula = `${skill.system.damage}`;
+    Object.entries(skill.system.damageRoll).forEach(([stat, value]) => {
+      if (value) {
+        const statValue = attacker.system.stats[stat].total;
+        rollFormula += ` + ${value}d${statValue}`
+      }
+    });
     MadnessDice.statCheck({
       actor: attacker,
-      statValue: attacker.system.stats[statName].base,
-      modValue: attacker.system.stats[statName].mod,
+      rollFormula: rollFormula,
       isAttack: true,
       extraMessageData: {
         item: skill
