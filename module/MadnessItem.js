@@ -11,7 +11,8 @@ export default class MadnessItem extends Item {
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: await renderTemplate(template, cardData)
+      content: await renderTemplate(template, cardData),
+      whisper: game.users.filter(user => this.actor.testUserPermission(user, 'OWNER'))
     };
     return ChatMessage.create(chatData);
   }
