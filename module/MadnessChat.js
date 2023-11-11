@@ -3,22 +3,22 @@ import MadnessDice from "./MadnessDice.js";
 export default class MadnessChat {
 
   static addChatListeners(html) {
-    html.on('click', 'button.skill-crit', MadnessChat.onSkillCritic)
-    html.on('click', 'button.skill-attack', MadnessChat.onSkillAttack)
+    html.on('click', 'button.item-crit', MadnessChat.onItemCritic)
+    html.on('click', 'button.item-attack', MadnessChat.onItemAttack)
   }
 
-  static onSkillCritic(event) {
-    const card = event.currentTarget.closest('.skill');
+  static onItemCritic(event) {
+    const card = event.currentTarget.closest('.item');
     const attacker = game.actors.get(card.dataset.ownerId);
-    const skill = attacker.items.get(card.dataset.itemId);
-    MadnessDice.rollCritDice(attacker, 'skill', skill);
+    const item = attacker.items.get(card.dataset.itemId);
+    MadnessDice.rollCritDice(attacker, 'item', item);
   }
 
-  static onSkillAttack(event) {
-    const card = event.currentTarget.closest('.skill');
+  static onItemAttack(event) {
+    const card = event.currentTarget.closest('.item');
     const attacker = game.actors.get(card.dataset.ownerId);
-    const skill = attacker.items.get(card.dataset.itemId);
-    MadnessDice.attack(attacker, 'skill', skill);
+    const item = attacker.items.get(card.dataset.itemId);
+    MadnessDice.attack(attacker, 'item', item);
   }
 
   static addChatMessageContextOptions(html, options) {

@@ -50,9 +50,9 @@ export default class MadnessDice {
     });
   }
 
-  static async attack(attacker, type, skill) {
-    let rollFormula = `${skill.system.damage}`;
-    Object.entries(skill.system.damageRoll).forEach(([stat, value]) => {
+  static async attack(attacker, type, item) {
+    let rollFormula = `${item.system.damage}`;
+    Object.entries(item.system.damageRoll).forEach(([stat, value]) => {
       if (value) {
         const statValue = attacker.system.stats[stat].total;
         rollFormula += ` + ${value}d${statValue}`
@@ -63,12 +63,12 @@ export default class MadnessDice {
       rollFormula: rollFormula,
       isAttack: true,
       extraMessageData: {
-        item: skill
+        item: item
       }
     });
   }
 
-  static async rollCritDice(attacker, type, skill) {
+  static async rollCritDice(attacker, type, item) {
     const messageTemplate = 'systems/madness/templates/chat/critical-check.hbs';
     const rollFormula = '1d100';
     const rollResult = await new Roll(rollFormula).roll({ async: true });
