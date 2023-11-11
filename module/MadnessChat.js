@@ -11,8 +11,7 @@ export default class MadnessChat {
   static onItemCritic(event) {
     const card = event.currentTarget.closest('.item');
     const attacker = game.actors.get(card.dataset.ownerId);
-    const item = attacker.items.get(card.dataset.itemId);
-    MadnessDice.rollCritDice(attacker, 'item', item);
+    MadnessDice.rollCritDice(attacker);
   }
 
   static onItemAttack(event) {

@@ -68,17 +68,20 @@ export default class MadnessDice {
     });
   }
 
-  static async rollCritDice(attacker, type, item) {
+  static async rollCritDice(actor) {
     const messageTemplate = 'systems/madness/templates/chat/critical-check.hbs';
     const rollFormula = '1d100';
     const rollResult = await new Roll(rollFormula).roll({ async: true });
-    console.log(rollResult)
-    const isCriticalSuccess = rollResult.total <= attacker.system.stats.critRate.total;
+    const isCriticalSuccess = rollResult.total <= actor.system.stats.critRate.total;
     const isCriticalFail = rollResult.total > 95;
-    MadnessDice.toCustomMessage(attacker, rollResult, messageTemplate, {
+    await MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
       isCriticalSuccess: isCriticalSuccess,
       isCriticalFail: isCriticalFail
     });
+    return {
+      isCriticalSuccess,
+      isCriticalFail
+    }
   }
 
   static async toCustomMessage(actor, rollResult, template, extraData) {
