@@ -43,7 +43,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
       html.find('.stat-roll').click(this._onStatRoll.bind(this));
       html.find('.item-create').click(this._onItemCreate.bind(this));
   
-      new ContextMenu(html, '.weapon-card', this.itemContextMenu);
+      new ContextMenu(html, '.item', this.itemContextMenu);
     }
 
     super.activateListeners(html);
