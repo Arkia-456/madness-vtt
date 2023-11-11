@@ -164,4 +164,13 @@ export default class MadnessActor extends Actor {
     return value * 10;
   }
 
+  calculateDamageReduction(damage) {
+    return (1 - ((this.system.stats.parryDamageReduction.total || 0) / 100)) * damage;
+  }
+
+  calculateArmorReduction(damage) {
+    const outcome = damage - (this.system.armor || 0);
+    return outcome > 0 ? outcome : 1;
+  }
+
 }

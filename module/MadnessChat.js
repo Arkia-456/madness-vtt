@@ -1,3 +1,4 @@
+import MadnessActor from "./MadnessActor.js";
 import MadnessDice from "./MadnessDice.js";
 
 export default class MadnessChat {
@@ -45,32 +46,29 @@ export default class MadnessChat {
     const itemDamage = parseInt(item.dataset.itemDamage)
     const defenders = [...canvas.tokens.controlled];
     const [defender] = defenders;
-    const outcome = itemDamage;
-    const actor = defender.actor;
+    const defenderActor = defender.actor;
 
-    if (outcome < 0) {
-      ChatMessage.create({
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor }),
-        content: await renderTemplate('systems/madness/templates/chat/attack-fail.hbs', {
-          blocker: defender
-        })
-      });
-    } else {
-      const template = 'systems/madness/templates/chat/attack-success.hbs';
-      
-      const templateData = {
-        damage: outcome,
-        actor: actor,
-        ...await actor.applyDamage(outcome)
-      }
-      defender.refresh();
-      ChatMessage.create({
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor }),
-        content: await renderTemplate(template, templateData)
-      });
+    const finalOutcome = MadnessChat._calculateOutcome(itemDamage, defenderActor)
+
+    const template = 'systems/madness/templates/chat/attack-success.hbs';
+    
+    const templateData = {
+      damage: finalOutcome,
+      actor: defenderActor,
+      ...await defenderActor.applyDamage(finalOutcome)
     }
+    defender.refresh();
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ defenderActor }),
+      content: await renderTemplate(template, templateData)
+    });
+  }
+
+  static _calculateOutcome(damage, actor) {
+    const reducedDamage = actor.calculateDamageReduction(damage);
+    const outcome = actor.calculateArmorReduction(reducedDamage);
+    return Math.ceil(outcome);
   }
 
 }
