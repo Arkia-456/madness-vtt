@@ -30,6 +30,8 @@ function registerHandlebarsHelpers() {
 
 Hooks.once('init', () => {
 
+  CONFIG.debug.custom = true;
+
   CONFIG.Item.documentClass = MadnessItem;
   CONFIG.Actor.documentClass = MadnessActor;
 

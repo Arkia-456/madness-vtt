@@ -1,3 +1,6 @@
+import { madness } from "./config.js";
+import Formula from "./formulas/Formula.js";
+
 export default class MadnessDice {
 
   static async taskCheck({
@@ -30,7 +33,7 @@ export default class MadnessDice {
     modValue = 0,
     statName = ''
   }) {
-    const rollFormula = '1d@value';
+    const rollFormula = madness.formulas.roll.statCheck;
     const rollData = {
       value: statValue + modValue
     };
@@ -51,13 +54,7 @@ export default class MadnessDice {
   }
 
   static async attack(attacker, type, item) {
-    let rollFormula = `${item.system.damage}`;
-    Object.entries(item.system.damageRoll).forEach(([stat, value]) => {
-      if (value) {
-        const statValue = attacker.system.stats[stat].total;
-        rollFormula += ` + ${value}d${statValue}`
-      }
-    });
+    const rollFormula = new Formula(madness.formulas.roll.damage(Object.entries(item.system.damageRoll))).compute({...attacker.system.stats, damage: item.system.damage}).computed;
     MadnessDice.taskCheck({
       actor: attacker,
       rollFormula: rollFormula,
@@ -70,10 +67,10 @@ export default class MadnessDice {
 
   static async rollCritDice(actor) {
     const messageTemplate = 'systems/madness/templates/chat/critical-check.hbs';
-    const rollFormula = '1d100';
+    const rollFormula = madness.formulas.roll.default;
     const rollResult = await new Roll(rollFormula).roll({ async: true });
     const isCriticalSuccess = rollResult.total <= actor.system.stats.critRate.total;
-    const isCriticalFail = rollResult.total > 95;
+    const isCriticalFail = rollResult.total > madness.thresholds.criticalFail;
     await MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
       isCriticalSuccess: isCriticalSuccess,
       isCriticalFail: isCriticalFail
@@ -86,12 +83,12 @@ export default class MadnessDice {
 
   static async rollEvade(actor) {
     const messageTemplate = 'systems/madness/templates/chat/evade-check.hbs';
-    const rollFormula = '1d100';
+    const rollFormula = madness.formulas.roll.default;
     const rollResult = await new Roll(rollFormula).roll({ async: true });
     const thresholds = {
       criticalSuccess: actor.system.stats.critRate.total,
       success: actor.system.stats.evadeRate.total,
-      criticalFail: 95
+      criticalFail: madness.thresholds.criticalFail
     };
     let result = {
       isCriticalSuccess: rollResult.total <= thresholds.criticalSuccess,

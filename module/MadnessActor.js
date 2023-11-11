@@ -1,8 +1,7 @@
-import MadnessUtils from './MadnessUtils.js';
+import { madness } from './config.js';
+import Formula from './formulas/Formula.js';
 
 export default class MadnessActor extends Actor {
-
-  isInit = false;
 
   prepareBaseData() {
     super.prepareBaseData();
@@ -12,14 +11,19 @@ export default class MadnessActor extends Actor {
     this._calculateMaxManaPoints();
     this._calculateActualHealthPoints();
     this._calculateActualManaPoints();
-    if (!this.isInit) {
-      this.isInit = true;
-    }
   }
 
   prepareEmbeddedDocuments() {
     super.prepareEmbeddedDocuments();
     this._getCommonMagicSkills();
+  }
+
+  async _preUpdate(changed, options, user) {
+    const healthPoints = changed.system.healthPoints;
+    if (healthPoints) {
+      healthPoints.missing = this.system.healthPoints.max - changed.system.healthPoints.value;
+    }
+    await super._preUpdate(changed, options, user);
   }
 
   async applyDamage(damage) {
@@ -35,23 +39,19 @@ export default class MadnessActor extends Actor {
   }
 
   _calculateMaxHealthPoints() {
-    this.system.healthPoints.max = this.system.healthPoints.base + ( 3 * this.system.stats.constitution.total );
+    this.system.healthPoints.max = new Formula(madness.formulas.healthPoints.max).compute({...this.system}).evaluate();
   }
 
   _calculateActualHealthPoints() {
-    if (!this.isInit) {
-      this.system.healthPoints.value = this.system.healthPoints.max - this.system.healthPoints.missing;
-    }
+    this.system.healthPoints.value = new Formula(madness.formulas.healthPoints.actual).compute({...this.system}).evaluate();
   }
 
   _calculateMaxManaPoints() {
-    this.system.manaPoints.max = this.system.manaPoints.base + ( 3 * this.system.stats.intelligence.total );
+    this.system.manaPoints.max = new Formula(madness.formulas.manaPoints.max).compute({...this.system}).evaluate();
   }
 
   _calculateActualManaPoints() {
-    if (!this.isInit) {
-      this.system.manaPoints.value = this.system.manaPoints.max - this.system.manaPoints.missing;
-    }
+    this.system.manaPoints.value = new Formula(madness.formulas.manaPoints.actual).compute({...this.system}).evaluate();
   }
 
   _getCommonMagicSkills() {
@@ -83,11 +83,11 @@ export default class MadnessActor extends Actor {
   }
 
   _calculateMagicDoka() {
-    this.system.magic.doka = Math.min(MadnessUtils.convertToInt(this.system.magic.ome), MadnessUtils.convertToInt(this.system.magic.teruuk));
+    this.system.magic.doka = new Formula(madness.formulas.magic.doka).compute({...this.system}).evaluate();
   }
 
   _calculateMagicNatah() {
-    this.system.magic.natah = Math.min(...Object.values(this.system.magic));
+    this.system.magic.natah = new Formula(madness.formulas.magic.natah).compute({...this.system}).evaluate();
   }
 
   _calculateStats() {
@@ -99,77 +99,50 @@ export default class MadnessActor extends Actor {
   _calculateTotalPrimaryStats() {
     for (const [key, value] of Object.entries(this.system.stats)) {
       if (value.primary) {
-        this.system.stats[key].total = MadnessUtils.convertToInt(this.system.stats[key].base) + MadnessUtils.convertToInt(this.system.stats[key].mod);
+        this.system.stats[key].total = new Formula(madness.formulas.stats.total).compute({...this.system}, { key: key, ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
       }
     }
   }
 
   _calculateSecondaryStats() {
+    console.log({...this.system})
     this.system.stats.parryDamageReduction = {
-      base: this._calculateParryDamageReduction(MadnessUtils.convertToInt(this.system.stats.constitution.total))
+      base: new Formula(madness.formulas.stats.parryDamageReduction).compute({...this.system}).evaluate()
     }
     this.system.stats.critRate = {
-      base: this._calculateCritRate(MadnessUtils.convertToInt(this.system.stats.dexterity.total))
+      base: new Formula(madness.formulas.stats.critRate).compute({...this.system}).evaluate()
     }
     this.system.stats.evadeRate = {
-      base: this._calculateEvadeRate(MadnessUtils.convertToInt(this.system.stats.agility.total))
+      base: new Formula(madness.formulas.stats.evadeRate).compute({...this.system}).evaluate()
     }
     this.system.stats.maxMoveDistance = {
-      base: this._calculateMaxMoveDistance(MadnessUtils.convertToInt(this.system.stats.agility.total))
+      base: new Formula(madness.formulas.stats.maxMoveDistance).compute({...this.system}).evaluate()
     }
     this.system.stats.initiativeBonus = {
-      base: this._calculateInitiativeBonus(MadnessUtils.convertToInt(this.system.stats.agility.total))
+      base: new Formula(madness.formulas.stats.initiativeBonus).compute({...this.system}).evaluate()
     }
     this.system.stats.maxEquipmentWeight = {
-      base: this._calculateMaxEquipmentWeight(MadnessUtils.convertToInt(this.system.stats.strength.total))
+      base: new Formula(madness.formulas.stats.maxEquipmentWeight).compute({...this.system}).evaluate()
     }
     this.system.stats.maxWeight = {
-      base: this._calculateMaxWeight(MadnessUtils.convertToInt(this.system.stats.strength.total))
+      base: new Formula(madness.formulas.stats.maxWeight).compute({...this.system}).evaluate()
     }
   }
 
   _calculateTotalSecondaryStats() {
     for (const [key, value] of Object.entries(this.system.stats)) {
       if (!value.primary) {
-        this.system.stats[key].total = MadnessUtils.convertToInt(this.system.stats[key].base) + MadnessUtils.convertToInt(this.system.stats[key].mod);
+        this.system.stats[key].total = new Formula(madness.formulas.stats.total).compute({...this.system}, { key: key, ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
       }
     }
   }
 
-  _calculateParryDamageReduction(value) {
-    return 50 + ( 2 * value );
-  }
-
-  _calculateCritRate(value) {
-    return 5 + value;
-  }
-
-  _calculateEvadeRate(value) {
-    return 50 + ( 2 * value );
-  }
-
-  _calculateMaxMoveDistance(value) {
-    return 3 + value;
-  }
-
-  _calculateInitiativeBonus(value) {
-    return value;
-  }
-
-  _calculateMaxEquipmentWeight(value) {
-    return value * 5;
-  }
-  
-  _calculateMaxWeight(value) {
-    return value * 10;
-  }
-
   calculateDamageReduction(damage) {
-    return (1 - ((this.system.stats.parryDamageReduction.total || 0) / 100)) * damage;
+    return new Formula(madness.formulas.combat.parryDamageReduction).compute({...this.system, damage}).evaluate();
   }
 
   calculateArmorReduction(damage) {
-    const outcome = damage - (this.system.armor || 0);
+    const outcome = new Formula(madness.formulas.combat.armorDamageReduction).compute({...this.system, damage}, { ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
     return outcome > 0 ? outcome : 1;
   }
 
