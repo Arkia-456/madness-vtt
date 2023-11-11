@@ -7,6 +7,8 @@ import MadnessItemSheet from './module/sheets/MadnessItemSheet.js';
 async function preloadHandlebarsTemplates() {
   const templatePaths = [
     'systems/madness/templates/partials/skill-card.hbs',
+    'systems/madness/templates/partials/attack-check.hbs',
+    'systems/madness/templates/partials/stat-check.hbs',
     'systems/madness/templates/partials/weapon-card.hbs'
   ];
   return loadTemplates(templatePaths);

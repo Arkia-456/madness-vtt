@@ -73,6 +73,9 @@
         "criticalSuccess": "Réussite critique !",
         "criticalFail": "Echec critique !",
         "notACrit": "Pas de critique"
+      },
+      "stat": {
+        "title": "Stat check : {statName}"
       }
     }
   }

@@ -6,6 +6,7 @@ export default class MadnessDice {
     rollData = {},
     sendMessage = true,
     isAttack = false,
+    isStatCheck = false,
     extraMessageData = {}
   } = {}) {
 
@@ -16,7 +17,8 @@ export default class MadnessDice {
     if (sendMessage) {
       MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
         ...extraMessageData,
-        isAttack
+        isAttack,
+        isStatCheck
       });
     }
 
@@ -25,7 +27,8 @@ export default class MadnessDice {
 
   static async statCheck({
     statValue = 0,
-    modValue = 0
+    modValue = 0,
+    statName = ''
   }) {
     const rollFormula = '1d@value';
     const rollData = {
@@ -39,7 +42,11 @@ export default class MadnessDice {
 
     MadnessDice.taskCheck({
       rollFormula: rollFormula,
-      rollData: rollData
+      rollData: rollData,
+      extraMessageData: {
+        statName: statName
+      },
+      isStatCheck: true
     });
   }
 

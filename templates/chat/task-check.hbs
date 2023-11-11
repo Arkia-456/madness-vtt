@@ -1,11 +1,11 @@
 <div class="task-check {{#if isAttack}}attack{{/if}}">
   {{#if isAttack}}
-    <h2>{{localize "madness.chat.attack.title" itemName=item.name}}</h2>
-    {{#if item}}
-      {{> 'systems/madness/templates/partials/skill-card.hbs' item=item roll=roll}}
-    {{/if}}
+    {{> 'systems/madness/templates/partials/attack-check.hbs' item=item}}
   {{/if}}
-    <div>
-      {{roll.total}}
-    </div>
+  {{#if isStatCheck}}
+    {{> 'systems/madness/templates/partials/stat-check.hbs' statName=statName}}
+  {{/if}}
+  <div>
+    {{roll.total}}
+  </div>
 </div>
