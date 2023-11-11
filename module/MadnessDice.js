@@ -1,6 +1,6 @@
 export default class MadnessDice {
 
-  static async statCheck({
+  static async taskCheck({
     actor = null,
     statValue = 0,
     modValue = 0,
@@ -46,7 +46,7 @@ export default class MadnessDice {
         rollFormula += ` + ${value}d${statValue}`
       }
     });
-    MadnessDice.statCheck({
+    MadnessDice.taskCheck({
       actor: attacker,
       rollFormula: rollFormula,
       isAttack: true,
