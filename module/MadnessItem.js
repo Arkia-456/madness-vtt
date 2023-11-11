@@ -2,7 +2,7 @@ export default class MadnessItem extends Item {
 
   async roll() {
     const cardData = {
-      ...this,
+      item: this,
       id: this.id,
       ownerId: this.actor.id,
       owner: game.actors.get(this.actor.id)

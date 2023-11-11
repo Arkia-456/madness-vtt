@@ -1,0 +1,33 @@
+<header class="{{cssClass}} sheet-header">
+  <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+  <h1>{{item.name}}</h1>
+</header>
+<h3>{{localize "madness.item.description"}}</h3>
+<p>{{item.system.description}}</p>
+<h3>{{localize "madness.item.requirements"}}</h3>
+<p>{{localize "madness.character.magic.ome"}} : {{item.system.requirements.ome}}</p>
+<p>{{localize "madness.character.magic.erah"}} : {{item.system.requirements.erah}}</p>
+<p>{{localize "madness.character.magic.sith"}} : {{item.system.requirements.sith}}</p>
+<p>{{localize "madness.character.magic.shor"}} : {{item.system.requirements.shor}}</p>
+<p>{{localize "madness.character.magic.teruuk"}} : {{item.system.requirements.teruuk}}</p>
+<p>{{localize "madness.character.magic.doka"}} : {{item.system.requirements.doka}}</p>
+<p>{{localize "madness.character.magic.natah"}} : {{item.system.requirements.natah}}</p>
+<h3>{{localize "madness.item.damageDice"}}</h3>
+{{#if item.system.damageRoll.intelligence}}
+  <p>{{item.system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}}</p>
+{{/if}}
+{{#if item.system.damageRoll.constitution}}
+  <p>{{item.system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}}</p>
+{{/if}}
+{{#if item.system.damageRoll.dexterity}}
+  <p>{{item.system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}}</p>
+{{/if}}
+{{#if item.system.damageRoll.agility}}
+  <p>{{item.system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}}</p>
+{{/if}}
+{{#if item.system.damageRoll.strength}}
+  <p>{{item.system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}}</p>
+{{/if}}
+<p>{{localize "madness.item.damage"}} : {{item.system.damage}}</p>
+<p>{{localize "madness.item.range"}} : {{item.system.range}}</p>
+<p>{{localize "madness.item.skill.manaCost"}} : {{item.system.cost}}</p>

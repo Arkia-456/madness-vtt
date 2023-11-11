@@ -1,21 +1,22 @@
-<div class="row skill-card item" data-item-id="{{_id}}" data-item-damage="{{#if roll}}{{roll.total}}{{else}}{{system.damage}}{{/if}}">
-  <div class="{{#if inSheet}} item-roll {{/if}}">{{name}}</div>
-  <div>{{system.cost}}</div>
+<div class="row skill-card item" data-item-id="{{_id}}" data-item-damage="{{#if roll}}{{roll.total}}{{else}}{{item.system.damage}}{{/if}}">
+  <div class="{{#if inSheet}} item-roll {{/if}}">{{item.name}}</div>
+  <div>{{#unless inSheet}}{{localize "madness.item.skill.manaCost"}} : {{/unless}}{{item.system.cost}}</div>
   <div>
-    {{#if system.damageRoll.intelligence}}
-      {{system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}} +
+    {{#if item.system.damageRoll.intelligence}}
+      {{item.system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}} +
     {{/if}}
-    {{#if system.damageRoll.constitution}}
-      {{system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}} +
+    {{#if item.system.damageRoll.constitution}}
+      {{item.system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}} +
     {{/if}}
-    {{#if system.damageRoll.dexterity}}
-      {{system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}} +
+    {{#if item.system.damageRoll.dexterity}}
+      {{item.system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}} +
     {{/if}}
-    {{#if system.damageRoll.agility}}
-      {{system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}} +
+    {{#if item.system.damageRoll.agility}}
+      {{item.system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}} +
     {{/if}}
-    {{#if system.damageRoll.strength}}
-      {{system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}} +
+    {{#if item.system.damageRoll.strength}}
+      {{item.system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}} +
     {{/if}}
-    {{system.damage}}</div>
+    {{item.system.damage}}
+  </div>
 </div>

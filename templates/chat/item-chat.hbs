@@ -1,6 +1,8 @@
 <div class="chat-card item" data-item-id="{{id}}" data-owner-id="{{ownerId}}">
   <div class="card-content">
-    <p>{{localize "madness.chat.actorUseItem" actorName=owner.name itemName=name}}</p>
+    {{#ifEquals item.type 'skill'}}
+      {{> 'systems/madness/templates/partials/skill-chat.hbs' item=item}}
+    {{/ifEquals}}
   </div>
   <div class="card-buttons">
     <button class="attack item-crit">{{localize "madness.chat.actions.critical"}}</button>

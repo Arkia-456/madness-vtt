@@ -7,11 +7,18 @@ import MadnessItemSheet from './module/sheets/MadnessItemSheet.js';
 async function preloadHandlebarsTemplates() {
   const templatePaths = [
     'systems/madness/templates/partials/skill-card.hbs',
+    'systems/madness/templates/partials/skill-chat.hbs',
     'systems/madness/templates/partials/attack-check.hbs',
     'systems/madness/templates/partials/stat-check.hbs',
     'systems/madness/templates/partials/weapon-card.hbs'
   ];
   return loadTemplates(templatePaths);
+}
+
+function registerHandlebarsHelpers() {
+  Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+    return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+  });
 }
 
 Hooks.once('init', () => {
@@ -26,6 +33,7 @@ Hooks.once('init', () => {
   Items.registerSheet('madness', MadnessItemSheet, { makeDefault: true });
 
   preloadHandlebarsTemplates();
+  registerHandlebarsHelpers();
 });
 
 Hooks.on('renderChatLog', (app, html, data) => MadnessChat.addChatListeners(html));

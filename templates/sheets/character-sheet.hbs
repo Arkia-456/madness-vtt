@@ -209,7 +209,7 @@
       <div>{{localize "madness.item.damage"}}</div>
     </div>
     {{#each skills as |skill id|}}
-      {{> 'systems/madness/templates/partials/skill-card.hbs' skill inSheet=true}}
+      {{> 'systems/madness/templates/partials/skill-card.hbs' item=skill inSheet=true}}
     {{/each}}
   </section>
   <section class="container">
