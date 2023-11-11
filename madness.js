@@ -8,6 +8,8 @@ async function preloadHandlebarsTemplates() {
   const templatePaths = [
     'systems/madness/templates/partials/skill-card.hbs',
     'systems/madness/templates/partials/skill-chat.hbs',
+    'systems/madness/templates/partials/skill-sheet-editable.hbs',
+    'systems/madness/templates/partials/skill-sheet-readonly.hbs',
     'systems/madness/templates/partials/attack-check.hbs',
     'systems/madness/templates/partials/stat-check.hbs',
     'systems/madness/templates/partials/weapon-card.hbs'
@@ -16,8 +18,13 @@ async function preloadHandlebarsTemplates() {
 }
 
 function registerHandlebarsHelpers() {
-  Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
-    return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+  Handlebars.registerHelper({
+    ifEquals: function (arg1, arg2, options) {
+      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+    },
+    or: function () {
+      return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+    }
   });
 }
 

@@ -41,6 +41,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
     if (this.actor.isOwner) {
       html.find('.item-roll').click(this._onItemRoll.bind(this));
       html.find('.stat-roll').click(this._onStatRoll.bind(this));
+      html.find('.item-create').click(this._onItemCreate.bind(this));
   
       new ContextMenu(html, '.weapon-card', this.itemContextMenu);
     }
@@ -77,4 +78,17 @@ export default class MadnessCharacterSheet extends ActorSheet {
     const item = this.actor.items.get(itemId);
     item.roll();
   }
+
+  async _onItemCreate(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    let defaultName = `madness.sheet.new${MadnessUtils.capitalizeFirstLetter(element.dataset.type||'item')}`;
+    const itemData = {
+      name: game.i18n.localize(defaultName),
+      type: element.dataset.type
+    };
+    const [itemDocument] = await this.actor.createEmbeddedDocuments('Item', [itemData]);
+    itemDocument.sheet.render(true);
+  }
+
 }

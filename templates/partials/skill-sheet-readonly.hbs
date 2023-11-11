@@ -1,0 +1,49 @@
+<header class="sheet-header">
+  <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+  <h1>
+    {{item.name}}
+  </h1>
+</header>
+<h3>{{localize "madness.item.description"}}</h3>
+<p>{{system.description}}</p>
+<h3>{{localize "madness.item.requirements"}}</h3>
+{{#if system.requirements.ome}}
+  <p>{{localize "madness.character.magic.ome"}} : {{system.requirements.ome}}</p>
+{{/if}}
+{{#if system.requirements.erah}}
+  <p>{{localize "madness.character.magic.erah"}} : {{system.requirements.erah}}</p>
+{{/if}}
+{{#if system.requirements.sith}}
+  <p>{{localize "madness.character.magic.sith"}} : {{system.requirements.sith}}</p>
+{{/if}}
+{{#if system.requirements.shor}}
+  <p>{{localize "madness.character.magic.shor"}} : {{system.requirements.shor}}</p>
+{{/if}}
+{{#if system.requirements.teruuk}}
+  <p>{{localize "madness.character.magic.teruuk"}} : {{system.requirements.teruuk}}</p>
+{{/if}}
+{{#if system.requirements.doka}}
+  <p>{{localize "madness.character.magic.doka"}} : {{system.requirements.doka}}</p>
+{{/if}}
+{{#if system.requirements.natah}}
+  <p>{{localize "madness.character.magic.natah"}} : {{system.requirements.natah}}</p>
+{{/if}}
+<h3>{{localize "madness.item.damageDice"}}</h3>
+{{#if system.damageRoll.intelligence}}
+  <p>{{system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}}</p>
+{{/if}}
+{{#if system.damageRoll.constitution}}
+  <p>{{system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}}</p>
+{{/if}}
+{{#if system.damageRoll.dexterity}}
+  <p>{{system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}}</p>
+{{/if}}
+{{#if system.damageRoll.agility}}
+  <p>{{system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}}</p>
+{{/if}}
+{{#if system.damageRoll.strength}}
+  <p>{{system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}}</p>
+{{/if}}
+<p>{{localize "madness.item.damage"}} : {{system.damage}}</p>
+<p>{{localize "madness.item.range"}} : {{system.range}}</p>
+<p>{{ localize "madness.item.skill.manaCost" }} : {{system.cost}}</p>

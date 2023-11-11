@@ -1,0 +1,94 @@
+<header class="sheet-header">
+  <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+  <h1>
+    <input name="name" type="text" value="{{item.name}}" placeholder="Name" />
+  </h1>
+</header>
+<h3>{{localize "madness.item.description"}}</h3>
+<input name="item.system.description" type="text" value="{{item.system.description}}" placeholder="Description" />
+<h3>{{localize "madness.item.requirements"}}</h3>
+<table>
+  <thead>
+    <tr>
+      <th>{{localize "madness.character.magic.ome"}}</th>
+      <th>{{localize "madness.character.magic.erah"}}</th>
+      <th>{{localize "madness.character.magic.sith"}}</th>
+      <th>{{localize "madness.character.magic.shor"}}</th>
+      <th>{{localize "madness.character.magic.teruuk"}}</th>
+      <th>{{localize "madness.character.magic.doka"}}</th>
+      <th>{{localize "madness.character.magic.natah"}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input name="system.requirements.ome" type="text" value="{{system.requirements.ome}}" data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.requirements.erah" type="text" value="{{system.requirements.erah}}" data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.requirements.sith" type="text" value="{{system.requirements.sith}}" data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.requirements.shor" type="text" value="{{system.requirements.shor}}" data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.requirements.teruuk" type="text" value="{{system.requirements.teruuk}}"
+          data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.requirements.doka" type="text" value="{{system.requirements.doka}}" data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.requirements.natah" type="text" value="{{system.requirements.natah}}" data-dtype="Number" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>{{localize "madness.item.damageDice"}}</h3>
+<table>
+  <thead>
+    <tr>
+      <th>{{localize "madness.character.stats.intelligence"}}</th>
+      <th>{{localize "madness.character.stats.constitution"}}</th>
+      <th>{{localize "madness.character.stats.dexterity"}}</th>
+      <th>{{localize "madness.character.stats.agility"}}</th>
+      <th>{{localize "madness.character.stats.strength"}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input name="system.damageRoll.intelligence" type="text" value="{{system.damageRoll.intelligence}}"
+          data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.damageRoll.constitution" type="text" value="{{system.damageRoll.constitution}}"
+          data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.damageRoll.dexterity" type="text" value="{{system.damageRoll.dexterity}}"
+          data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.damageRoll.agility" type="text" value="{{system.damageRoll.agility}}" data-dtype="Number" />
+      </td>
+      <td>
+        <input name="system.damageRoll.strength" type="text" value="{{system.damageRoll.strength}}"
+          data-dtype="Number" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  {{localize "madness.item.damage"}} : <input name="system.damage" type="text" value="{{system.damage}}"
+    data-dtype="Number" />
+</p>
+<p>
+  {{localize "madness.item.range"}} : <input name="system.range" type="text" value="{{system.range}}" data-dtype="Number" />
+</p>
+<p>
+  {{localize "madness.item.skill.manaCost"}} : <input name="system.cost" type="text" value="{{system.cost}}"
+    data-dtype="Number" />
+</p>
