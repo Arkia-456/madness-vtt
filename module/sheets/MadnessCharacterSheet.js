@@ -63,7 +63,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
   }
 
   _onStatRoll(event) {
-    MadnessDice.taskCheck({
+    MadnessDice.statCheck({
       statValue: MadnessUtils.convertToInt(event.currentTarget.dataset.statvalue),
       modValue: MadnessUtils.convertToInt(event.currentTarget.dataset.modvalue)
     });

@@ -2,9 +2,8 @@ export default class MadnessDice {
 
   static async taskCheck({
     actor = null,
-    statValue = 0,
-    modValue = 0,
     rollFormula = '',
+    rollData = {},
     sendMessage = true,
     isAttack = false,
     extraMessageData = {}
@@ -12,21 +11,7 @@ export default class MadnessDice {
 
     const messageTemplate = 'systems/madness/templates/chat/stat-check.hbs';
 
-    const formula = rollFormula ? rollFormula : '1d@value';
-    
-    let rollData = {};
-
-    if ((statValue || modValue)) {
-
-      rollData = {
-        value: statValue + modValue
-      };
-
-      if (!rollData.value || rollData.value <= 0) return;
-
-    }
-
-    const rollResult = await new Roll(formula, rollData).roll({ async: true });
+    const rollResult = await new Roll(rollFormula, rollData).roll({ async: true });
 
     if (sendMessage) {
       MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
@@ -36,6 +21,26 @@ export default class MadnessDice {
     }
 
     return rollResult;
+  }
+
+  static async statCheck({
+    statValue = 0,
+    modValue = 0
+  }) {
+    const rollFormula = '1d@value';
+    const rollData = {
+      value: statValue + modValue
+    };
+
+    if (!rollData.value || rollData.value <= 0) {
+      console.log(`No value to roll: ${statValue}, ${modValue}`);
+      return;
+    };
+
+    MadnessDice.taskCheck({
+      rollFormula: rollFormula,
+      rollData: rollData
+    });
   }
 
   static async attack(attacker, type, skill) {
