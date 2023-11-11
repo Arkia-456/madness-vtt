@@ -73,7 +73,9 @@
         },
         "criticalSuccess": "Réussite critique !",
         "criticalFail": "Echec critique !",
-        "notACrit": "Pas de critique"
+        "notACrit": "Pas de critique",
+        "success": "Succès !",
+        "fail": "Echec"
       },
       "stat": {
         "title": "Stat check : {statName}"

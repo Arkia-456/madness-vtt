@@ -47,7 +47,15 @@ export default class MadnessChat {
     const [defender] = defenders;
     const defenderActor = defender.actor;
 
-    const finalOutcome = MadnessChat._calculateOutcome(itemDamage, defenderActor)
+    if (dodge) {
+      const dodgeResult = await MadnessDice.rollEvade(defenderActor);
+      if (Object.entries(dodgeResult).some(([key, value]) => value)) return;
+    } else {
+      const result = await MadnessDice.rollCritDice(defenderActor);
+      if (result.isCriticalSuccess || result.isCriticalFail) return;
+    }
+
+    const finalOutcome = MadnessChat._calculateOutcome(itemDamage, defenderActor, dodge)
 
     const template = 'systems/madness/templates/chat/attack-success.hbs';
     
@@ -62,10 +70,14 @@ export default class MadnessChat {
       speaker: ChatMessage.getSpeaker({ defenderActor }),
       content: await renderTemplate(template, templateData)
     });
+
   }
 
-  static _calculateOutcome(damage, actor) {
-    const reducedDamage = actor.calculateDamageReduction(damage);
+  static _calculateOutcome(damage, actor, dodge) {
+    let reducedDamage = damage;
+    if (!dodge) {
+      reducedDamage = actor.calculateDamageReduction(damage);
+    }
     const outcome = actor.calculateArmorReduction(reducedDamage);
     return Math.ceil(outcome);
   }

@@ -84,6 +84,26 @@ export default class MadnessDice {
     }
   }
 
+  static async rollEvade(actor) {
+    const messageTemplate = 'systems/madness/templates/chat/evade-check.hbs';
+    const rollFormula = '1d100';
+    const rollResult = await new Roll(rollFormula).roll({ async: true });
+    const thresholds = {
+      criticalSuccess: actor.system.stats.critRate.total,
+      success: actor.system.stats.evadeRate.total,
+      criticalFail: 95
+    };
+    let result = {
+      isCriticalSuccess: rollResult.total <= thresholds.criticalSuccess,
+      isCriticalFail: rollResult.total > thresholds.criticalFail,
+      isSuccess: rollResult.total <= thresholds.success
+    };
+    await MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
+      ...result
+    });
+    return result;
+  }
+
   static async toCustomMessage(actor, rollResult, template, extraData) {
     const templateContext = {
       ...extraData,
