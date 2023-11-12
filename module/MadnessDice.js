@@ -53,18 +53,6 @@ export default class MadnessDice {
     });
   }
 
-  static async attack(attacker, type, item) {
-    const rollFormula = new Formula(madness.formulas.roll.damage(Object.entries(item.system.damageRoll))).compute({...attacker.system.stats, damage: item.system.damage}).computed;
-    MadnessDice.taskCheck({
-      actor: attacker,
-      rollFormula: rollFormula,
-      isAttack: true,
-      extraMessageData: {
-        item: item
-      }
-    });
-  }
-
   static async rollCritDice(actor) {
     const messageTemplate = 'systems/madness/templates/chat/critical-check.hbs';
     const rollFormula = madness.formulas.roll.default;

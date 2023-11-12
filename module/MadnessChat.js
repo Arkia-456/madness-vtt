@@ -1,5 +1,6 @@
 import MadnessActor from "./MadnessActor.js";
 import MadnessDice from "./MadnessDice.js";
+import MadnessItem from "./MadnessItem.js";
 
 export default class MadnessChat {
 
@@ -18,7 +19,7 @@ export default class MadnessChat {
     const card = event.currentTarget.closest('.item');
     const attacker = game.actors.get(card.dataset.ownerId);
     const item = attacker.items.get(card.dataset.itemId);
-    MadnessDice.attack(attacker, 'item', item);
+    item.attack(attacker);
   }
 
   static addChatMessageContextOptions(html, options) {
