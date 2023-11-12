@@ -75,7 +75,8 @@
         "criticalFail": "Echec critique !",
         "notACrit": "Pas de critique",
         "success": "Succès !",
-        "fail": "Echec"
+        "fail": "Echec",
+        "notEnoughMana": "Pas assez de mana : {cost} points nécessaires, {available} points disponibles."
       },
       "stat": {
         "title": "Stat check : {statName}"

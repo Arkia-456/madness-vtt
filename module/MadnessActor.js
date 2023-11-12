@@ -23,6 +23,10 @@ export default class MadnessActor extends Actor {
     if (healthPoints) {
       healthPoints.missing = this.system.healthPoints.max - changed.system.healthPoints.value;
     }
+    const manaPoints = changed.system.manaPoints;
+    if (manaPoints) {
+      manaPoints.missing = this.system.manaPoints.max - changed.system.manaPoints.value;
+    }
     await super._preUpdate(changed, options, user);
   }
 
@@ -36,6 +40,14 @@ export default class MadnessActor extends Actor {
     return {
       downed: downed
     }
+  }
+
+  async removeManaPoints(value) {
+    const remainingManaPoints = this.system.manaPoints.value - value;
+    await this.update({
+      'system.manaPoints.value': remainingManaPoints,
+      'system.manaPoints.missing': this.system.manaPoints.missing + value
+    });
   }
 
   _calculateMaxHealthPoints() {
