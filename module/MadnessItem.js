@@ -4,6 +4,8 @@ import Formula from "./formulas/Formula.js";
 
 export default class MadnessItem extends Item {
 
+  _rangeMeasuredTemplate;
+
   async attack(attacker) {
     if (this.type === 'skill') {
       if (attacker.system.manaPoints.value < this.system.cost) {
@@ -31,6 +33,33 @@ export default class MadnessItem extends Item {
         item: this
       }
     });
+  }
+
+  async showRange() {
+    if (this.system.range >= 1) {
+      const tokens = [...canvas.tokens.controlled];
+      if (tokens.length) {
+        const [token] = tokens;
+        const templateData = {
+          t: 'circle',
+          user: game.user.id,
+          x: token.center.x,
+          y: token.center.y,
+          direction: 0,
+          distance: this.system.range || 0.1,
+          fillColor: madness.colors.item.range.fillColor,
+          borderColor: madness.colors.item.range.borderColor
+        };
+        const createdTemplates = await canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [templateData]);
+        this._rangeMeasuredTemplate = createdTemplates[0];
+      }
+    }
+  }
+
+  hideRange() {
+    if (this._rangeMeasuredTemplate) {
+      canvas.scene.deleteEmbeddedDocuments('MeasuredTemplate', [this._rangeMeasuredTemplate.id])
+    }
   }
 
   async roll() {

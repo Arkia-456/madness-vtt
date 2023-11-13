@@ -1,5 +1,14 @@
 export const madness = {};
 
+madness.colors = {
+  item: {
+    range: {
+      borderColor: '#000000',
+      fillColor: '#cc8b28'
+    }
+  }
+}
+
 madness.formulas = {
   healthPoints: {
     max: '@{healthPoints.base} + 3 * @{stats.constitution.total}',

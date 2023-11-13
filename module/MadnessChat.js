@@ -7,6 +7,8 @@ export default class MadnessChat {
   static addChatListeners(html) {
     html.on('click', 'button.item-crit', MadnessChat.onItemCritic)
     html.on('click', 'button.item-attack', MadnessChat.onItemAttack)
+    html.on('mouseover', 'button.item-attack', MadnessChat.onItemAttackMouseOver)
+    html.on('mouseout', 'button.item-attack', MadnessChat.onItemAttackMouseOut)
   }
 
   static onItemCritic(event) {
@@ -20,6 +22,20 @@ export default class MadnessChat {
     const attacker = game.actors.get(card.dataset.ownerId);
     const item = attacker.items.get(card.dataset.itemId);
     item.attack(attacker);
+  }
+
+  static onItemAttackMouseOver(event) {
+    const card = event.currentTarget.closest('.item');
+    const attacker = game.actors.get(card.dataset.ownerId);
+    const item = attacker.items.get(card.dataset.itemId);
+    item.showRange();
+  }
+
+  static onItemAttackMouseOut(event) {
+    const card = event.currentTarget.closest('.item');
+    const attacker = game.actors.get(card.dataset.ownerId);
+    const item = attacker.items.get(card.dataset.itemId);
+    item.hideRange();
   }
 
   static addChatMessageContextOptions(html, options) {
