@@ -13,29 +13,34 @@ export default class MadnessChat {
 
   static onItemCritic(event) {
     const card = event.currentTarget.closest('.item');
-    const attacker = game.actors.get(card.dataset.ownerId);
+    const {actor: attacker} = MadnessChat._getActorAndItem(card);
     MadnessDice.rollCritDice(attacker);
   }
 
   static onItemAttack(event) {
     const card = event.currentTarget.closest('.item');
-    const attacker = game.actors.get(card.dataset.ownerId);
-    const item = attacker.items.get(card.dataset.itemId);
+    const {actor: attacker, item} = MadnessChat._getActorAndItem(card);
     item.attack(attacker);
   }
 
   static onItemAttackMouseOver(event) {
     const card = event.currentTarget.closest('.item');
-    const attacker = game.actors.get(card.dataset.ownerId);
-    const item = attacker.items.get(card.dataset.itemId);
+    const {item} = MadnessChat._getActorAndItem(card);
     item.showRange();
   }
 
   static onItemAttackMouseOut(event) {
     const card = event.currentTarget.closest('.item');
-    const attacker = game.actors.get(card.dataset.ownerId);
-    const item = attacker.items.get(card.dataset.itemId);
+    const {item} = MadnessChat._getActorAndItem(card);
     item.hideRange();
+  }
+
+  static _getActorAndItem(card) {
+    const actor = game.actors.get(card.dataset.ownerId);
+    return {
+      actor: actor,
+      item: actor.items.get(card.dataset.itemId)
+    }
   }
 
   static addChatMessageContextOptions(html, options) {
