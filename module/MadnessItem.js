@@ -8,7 +8,7 @@ export default class MadnessItem extends Item {
 
   async attack(attacker) {
     if (this.type === 'skill') {
-      if (attacker.system.manaPoints.value < this.system.cost) {
+      if (attacker.system.attributes.mp.value < this.system.cost) {
         const notEnoughManaTemplate = 'systems/madness/templates/chat/not-enough-mana.hbs';
         const notEnoughManaData = {
           item: this,
