@@ -1,9 +1,9 @@
 <div class="task-check {{#if isAttack}}attack{{/if}}">
   {{#if isAttack}}
-    {{> 'systems/madness/templates/partials/attack-check.hbs' item=item}}
+    {{> 'madness.attack-check' item=item}}
   {{/if}}
   {{#if isStatCheck}}
-    {{> 'systems/madness/templates/partials/stat-check.hbs' statName=statName}}
+    {{> 'madness.stat-check' statName=statName}}
   {{/if}}
   <div>
     {{roll.total}}

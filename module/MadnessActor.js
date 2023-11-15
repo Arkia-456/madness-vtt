@@ -3,67 +3,76 @@ import Formula from './formulas/Formula.js';
 
 export default class MadnessActor extends Actor {
 
+  // Prepare data
+
   prepareBaseData() {
     super.prepareBaseData();
     this._calculateStats();
     this._calculateMagic();
-    this._calculateMaxHealthPoints();
-    this._calculateMaxManaPoints();
-    this._calculateActualHealthPoints();
-    this._calculateActualManaPoints();
   }
 
-  prepareEmbeddedDocuments() {
-    super.prepareEmbeddedDocuments();
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this._prepareAttributesPoints();
+  }
+
+  _calculateStats() {
+    this._calculateTotalPrimaryStats();
+    this._calculateSecondaryStats();
+    this._calculateTotalSecondaryStats();
+  }
+
+  _calculateTotalPrimaryStats() {
+    this._calculateTotalStats(true);
+  }
+
+  _calculateSecondaryStats() {
+    for (const [key, value] of Object.entries(this.system.stats)) {
+      if (!value.primary) {
+        this.system.stats[key].base = new Formula(madness.formulas.stats[key]).compute({...this.system}).evaluate();
+      }
+    }
+  }
+
+  _calculateTotalSecondaryStats() {
+    this._calculateTotalStats(false);
+  }
+
+  _calculateTotalStats(isPrimary) {
+    for (const [key, value] of Object.entries(this.system.stats)) {
+      if (Boolean(value.primary) === isPrimary) {
+        this.system.stats[key].total = new Formula(madness.formulas.stats.total).compute({...this.system}, { key: key, ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
+      }
+    }
+  }
+
+  _calculateMagic() {
+    this._calculateCombinedMagics();
+  }
+
+  _calculateCombinedMagics() {
+    Object.entries(this.system.magic).filter(([key, value]) => value.combined).forEach(([key, value]) => this._calculateCombinedMagic(key));
+  }
+
+  _calculateCombinedMagic(magicName) {
+    this.system.magic[magicName].value = new Formula(madness.formulas.magic[magicName]).compute({...this.system}).evaluate();
+  }
+
+  _prepareAttributesPoints() {
+    Object.keys(this.system.attributes).forEach(key => this._prepareAttributePoints(key));
+  }
+
+  _prepareAttributePoints(attribute) {
+    const attr = this.system.attributes[attribute];
+    attr.max = new Formula(madness.formulas[attribute].max).compute({...this.system}).evaluate();
+    attr.value = new Formula(madness.formulas[attribute].value).compute({...this.system}).evaluate();
+  }
+
+  // Creation / Update
+
+  _onCreate(data, options, userId) {
     this._getCommonMagicSkills();
-  }
-
-  async _preUpdate(changed, options, user) {
-    const healthPoints = changed.system.healthPoints;
-    if (healthPoints) {
-      healthPoints.missing = this.system.healthPoints.max - changed.system.healthPoints.value;
-    }
-    const manaPoints = changed.system.manaPoints;
-    if (manaPoints) {
-      manaPoints.missing = this.system.manaPoints.max - changed.system.manaPoints.value;
-    }
-    await super._preUpdate(changed, options, user);
-  }
-
-  async applyDamage(damage) {
-    const remainingHealthPoints = this.system.healthPoints.value - damage;
-    await this.update({
-      'system.healthPoints.value': remainingHealthPoints,
-      'system.healthPoints.missing': this.system.healthPoints.missing + damage
-    });
-    const downed = remainingHealthPoints === 0;
-    return {
-      downed: downed
-    }
-  }
-
-  async removeManaPoints(value) {
-    const remainingManaPoints = this.system.manaPoints.value - value;
-    await this.update({
-      'system.manaPoints.value': remainingManaPoints,
-      'system.manaPoints.missing': this.system.manaPoints.missing + value
-    });
-  }
-
-  _calculateMaxHealthPoints() {
-    this.system.healthPoints.max = new Formula(madness.formulas.healthPoints.max).compute({...this.system}).evaluate();
-  }
-
-  _calculateActualHealthPoints() {
-    this.system.healthPoints.value = new Formula(madness.formulas.healthPoints.actual).compute({...this.system}).evaluate();
-  }
-
-  _calculateMaxManaPoints() {
-    this.system.manaPoints.max = new Formula(madness.formulas.manaPoints.max).compute({...this.system}).evaluate();
-  }
-
-  _calculateActualManaPoints() {
-    this.system.manaPoints.value = new Formula(madness.formulas.manaPoints.actual).compute({...this.system}).evaluate();
+    super._onCreate(data, options, userId);
   }
 
   _getCommonMagicSkills() {
@@ -80,7 +89,7 @@ export default class MadnessActor extends Actor {
     let requirementMet = true;
     const skillRequirements = skill.system.requirements;
     for (const [key, value] of Object.entries(skillRequirements)) {
-      const actorMagicLevel = this.system.magic[key];
+      const actorMagicLevel = this.system.magic[key].value;
       if (actorMagicLevel < value) {
         requirementMet = false;
         break;
@@ -89,73 +98,51 @@ export default class MadnessActor extends Actor {
     return requirementMet;
   }
 
-  _calculateMagic() {
-    this._calculateMagicDoka();
-    this._calculateMagicNatah();
+  async _preUpdate(changed, options, user) {
+    this._attributesChanged(changed.system.attributes);
+    await super._preUpdate(changed, options, user);
   }
 
-  _calculateMagicDoka() {
-    this.system.magic.doka = new Formula(madness.formulas.magic.doka).compute({...this.system}).evaluate();
+  _attributesChanged(attributes) {
+    if (!attributes) return;
+    Object.entries(attributes).forEach(([key, value]) => value.missing = this.system.attributes[key].max - value.value)
   }
 
-  _calculateMagicNatah() {
-    this.system.magic.natah = new Formula(madness.formulas.magic.natah).compute({...this.system}).evaluate();
-  }
+  // Attributes modification
 
-  _calculateStats() {
-    this._calculateTotalPrimaryStats();
-    this._calculateSecondaryStats();
-    this._calculateTotalSecondaryStats();
-  }
-
-  _calculateTotalPrimaryStats() {
-    for (const [key, value] of Object.entries(this.system.stats)) {
-      if (value.primary) {
-        this.system.stats[key].total = new Formula(madness.formulas.stats.total).compute({...this.system}, { key: key, ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
-      }
+  async applyDamage(damage) {
+    const dhp = await this._removeAttributePoints('hp', damage);
+    const downed = dhp === 0;
+    return {
+      downed: downed
     }
   }
 
-  _calculateSecondaryStats() {
-    console.log({...this.system})
-    this.system.stats.parryDamageReduction = {
-      base: new Formula(madness.formulas.stats.parryDamageReduction).compute({...this.system}).evaluate()
-    }
-    this.system.stats.critRate = {
-      base: new Formula(madness.formulas.stats.critRate).compute({...this.system}).evaluate()
-    }
-    this.system.stats.evadeRate = {
-      base: new Formula(madness.formulas.stats.evadeRate).compute({...this.system}).evaluate()
-    }
-    this.system.stats.maxMoveDistance = {
-      base: new Formula(madness.formulas.stats.maxMoveDistance).compute({...this.system}).evaluate()
-    }
-    this.system.stats.initiativeBonus = {
-      base: new Formula(madness.formulas.stats.initiativeBonus).compute({...this.system}).evaluate()
-    }
-    this.system.stats.maxEquipmentWeight = {
-      base: new Formula(madness.formulas.stats.maxEquipmentWeight).compute({...this.system}).evaluate()
-    }
-    this.system.stats.maxWeight = {
-      base: new Formula(madness.formulas.stats.maxWeight).compute({...this.system}).evaluate()
-    }
+  async removeManaPoints(damage) {
+    await this._removeAttributePoints('mp', damage);
   }
 
-  _calculateTotalSecondaryStats() {
-    for (const [key, value] of Object.entries(this.system.stats)) {
-      if (!value.primary) {
-        this.system.stats[key].total = new Formula(madness.formulas.stats.total).compute({...this.system}, { key: key, ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
-      }
-    }
+  async _removeAttributePoints(attribute, damage) {
+    const attr = this.system.attributes[attribute];
+    const actualDamage = Math.clamped(damage, 0, attr.max);
+    const delta = attr.value - actualDamage;
+    const missing = attr.missing + actualDamage;
+    const updates = {};
+    updates[`system.attributes.${attribute}.value`] = delta;
+    updates[`system.attributes.${attribute}.missing`] = missing;
+    await this.update(updates);
+    return delta;
   }
 
-  calculateDamageReduction(damage) {
-    return new Formula(madness.formulas.combat.parryDamageReduction).compute({...this.system, damage}).evaluate();
-  }
+  // Combat
 
   calculateArmorReduction(damage) {
     const outcome = new Formula(madness.formulas.combat.armorDamageReduction).compute({...this.system, damage}, { ignoreUnknownPath: true, fallbackValue: 0 }).evaluate();
     return outcome > 0 ? outcome : 1;
+  }
+
+  calculateDamageReduction(damage) {
+    return new Formula(madness.formulas.combat.parryDamageReduction).compute({...this.system, damage}).evaluate();
   }
 
 }

@@ -1,13 +1,14 @@
 {
-  "name": "madness",
+  "id": "madness",
   "title": "Madness",
-  "description": "Madness system",
+  "description": "A system for playing Madness role-playing game in the Foundry Virtual Tabletop environment.",
   "author": "Arkia",
   "version": "1.0.0",
   "compatibility": {
     "minimum": "11",
     "verified": "11"
   },
+  "url": "https://github.com/Arkia-456/madness-vtt",
   "esmodules": [
     "madness.js"
   ],

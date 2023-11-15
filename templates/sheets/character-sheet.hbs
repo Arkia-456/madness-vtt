@@ -42,18 +42,18 @@
       </thead>
       <tbody>
         <tr>
-          <th>{{localize "madness.character.healthPoints"}}</th>
-          <td><input name="system.healthPoints.value" type="text" value="{{system.healthPoints.value}}"
+          <th>{{localize "madness.character.hitPoints"}}</th>
+          <td><input name="system.attributes.hp.value" type="text" value="{{system.attributes.hp.value}}"
               data-dtype="Number" /></td>
           <td></td>
-          <td>{{system.healthPoints.max}}</td>
+          <td>{{system.attributes.hp.max}}</td>
         </tr>
         <tr>
           <th>{{localize "madness.character.manaPoints"}}</th>
-          <td><input name="system.manaPoints.value" type="text" value="{{system.manaPoints.value}}"
+          <td><input name="system.attributes.mp.value" type="text" value="{{system.attributes.mp.value}}"
               data-dtype="Number" /></td>
           <td></td>
-          <td>{{system.manaPoints.max}}</td>
+          <td>{{system.attributes.mp.max}}</td>
         </tr>
         <tr>
           <th class="stat-roll" data-stat-name="intelligence" data-statvalue="{{system.stats.intelligence.base}}" data-modvalue="{{system.stats.intelligence.mod}}">{{localize "madness.character.stats.intelligence"}}</th>
@@ -158,28 +158,28 @@
       </thead>
       <tbody>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.ome}}">{{localize "madness.character.magic.ome"}}</th>
-          <td><input name="system.magic.ome" type="text" value="{{system.magic.ome}}"
+          <th class="stat-roll" data-statvalue="{{system.magic.ome.value}}">{{localize "madness.character.magic.ome"}}</th>
+          <td><input name="system.magic.ome.value" type="text" value="{{system.magic.ome.value}}"
               data-dtype="Number" /></td>
         </tr>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.erah}}">{{localize "madness.character.magic.erah"}}</th>
-          <td><input name="system.magic.erah" type="text" value="{{system.magic.erah}}"
+          <th class="stat-roll" data-statvalue="{{system.magic.erah.value}}">{{localize "madness.character.magic.erah"}}</th>
+          <td><input name="system.magic.erah.value" type="text" value="{{system.magic.erah.value}}"
               data-dtype="Number" /></td>
         </tr>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.sith}}">{{localize "madness.character.magic.sith"}}</th>
-          <td><input name="system.magic.sith" type="text" value="{{system.magic.sith}}"
+          <th class="stat-roll" data-statvalue="{{system.magic.sith.value}}">{{localize "madness.character.magic.sith"}}</th>
+          <td><input name="system.magic.sith.value" type="text" value="{{system.magic.sith.value}}"
               data-dtype="Number" /></td>
         </tr>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.shor}}">{{localize "madness.character.magic.shor"}}</th>
-          <td><input name="system.magic.shor" type="text" value="{{system.magic.shor}}"
+          <th class="stat-roll" data-statvalue="{{system.magic.shor.value}}">{{localize "madness.character.magic.shor"}}</th>
+          <td><input name="system.magic.shor.value" type="text" value="{{system.magic.shor.value}}"
               data-dtype="Number" /></td>
         </tr>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.teruuk}}">{{localize "madness.character.magic.teruuk"}}</th>
-          <td><input name="system.magic.teruuk" type="text" value="{{system.magic.teruuk}}"
+          <th class="stat-roll" data-statvalue="{{system.magic.teruuk.value}}">{{localize "madness.character.magic.teruuk"}}</th>
+          <td><input name="system.magic.teruuk.value" type="text" value="{{system.magic.teruuk.value}}"
               data-dtype="Number" /></td>
         </tr>
       </tbody>
@@ -192,17 +192,17 @@
       </thead>
       <tbody>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.doka}}">{{localize "madness.character.magic.doka"}}</th>
-          <td>{{system.magic.doka}}</td>
+          <th class="stat-roll" data-statvalue="{{system.magic.doka.value}}">{{localize "madness.character.magic.doka"}}</th>
+          <td>{{system.magic.doka.value}}</td>
         </tr>
         <tr>
-          <th class="stat-roll" data-statvalue="{{system.magic.natah}}">{{localize "madness.character.magic.natah"}}</th>
-          <td>{{system.magic.natah}}</td>
+          <th class="stat-roll" data-statvalue="{{system.magic.natah.value}}">{{localize "madness.character.magic.natah"}}</th>
+          <td>{{system.magic.natah.value}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <section class="container">
+  <section class="container item-list">
     <button class="item-create" data-type="skill"><i class="fas fa-plus"></i> {{localize "madness.sheet.addSkill"}}</button>
     <div class="row">
       <div>{{localize "Name"}}</div>
@@ -210,17 +210,18 @@
       <div>{{localize "madness.item.damage"}}</div>
     </div>
     {{#each skills as |skill id|}}
-      {{> 'systems/madness/templates/partials/skill-card.hbs' item=skill inSheet=true}}
+      {{> 'madness.skill-card' item=skill inSheet=true}}
     {{/each}}
   </section>
   <section class="container">
+    <!-- <a id="item-create" data-type="weapon" title="{{localize "madness.sheet.addWeapon"}}"><i class="fas fa-plus"></i></a> -->
       <div class="row">
         <div>{{localize "Name"}}</div>
         <div>{{localize "madness.item.weight"}}</div>
         <div>{{localize "madness.item.magazine"}}</div>
       </div>
       {{#each weapons as |weapon id|}}
-        {{> 'systems/madness/templates/partials/weapon-card.hbs' weapon inSheet=true}}
+        {{> 'madness.weapon-card' weapon inSheet=true}}
       {{/each}}
   </section>
 </form>

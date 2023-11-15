@@ -9,17 +9,19 @@
       "job": "",
       "race": "",
       "affilitation": "",
-      "healthPoints": {
-        "base": 15,
-        "value": 15,
-        "missing": 0,
-        "max": 15
-      },
-      "manaPoints": {
-        "base": 15,
-        "value": 15,
-        "missing": 0,
-        "max": 15
+      "attributes": {
+        "hp": {
+          "value": 15,
+          "base": 15,
+          "missing": 0,
+          "max": null
+        },
+        "mp": {
+          "value": 15,
+          "base": 15,
+          "missing": 0,
+          "max": null
+        }
       },
       "stats": {
         "intelligence": {
@@ -41,14 +43,46 @@
         "strength": {
           "primary": true,
           "base": 3
-        }
+        },
+        "parryDamageReduction": {},
+        "critRate": {},
+        "evadeRate": {},
+        "maxMoveDistance": {},
+        "initiativeBonus": {},
+        "maxEquipmentWeight": {},
+        "maxWeight": {}
       },
       "magic": {
-        "ome": 1,
-        "erah": 1,
-        "sith": 1,
-        "shor": 1,
-        "teruuk": 1
+        "ome": {
+          "value": 1,
+          "max": 4
+        },
+        "erah": {
+          "value": 1,
+          "max": 4
+        },
+        "sith": {
+          "value": 1,
+          "max": 4
+        },
+        "shor": {
+          "value": 1,
+          "max": 4
+        },
+        "teruuk": {
+          "value": 1,
+          "max": 4
+        },
+        "doka": {
+          "combined": true,
+          "value": 1,
+          "max": 4
+        },
+        "natah": {
+          "combined": true,
+          "value": 1,
+          "max": 4
+        }
       }
     }
   },

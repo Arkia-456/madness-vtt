@@ -1,7 +1,7 @@
 <div class="chat-card item" data-item-id="{{id}}" data-owner-id="{{ownerId}}">
   <div class="card-content">
     {{#ifEquals item.type 'skill'}}
-      {{> 'systems/madness/templates/partials/skill-chat.hbs' item=item}}
+      {{> 'madness.skill-chat' item=item}}
     {{/ifEquals}}
   </div>
   <div class="card-buttons">

@@ -1,8 +1,8 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{#if (or user.isGM item.actor.isOwner)}}
-    {{> 'systems/madness/templates/partials/skill-sheet-editable.hbs' item=item}}
+    {{> 'madness.skill-sheet-editable' item=item}}
   {{else}}
-    {{> 'systems/madness/templates/partials/skill-sheet-readonly.hbs' item=item}}
+    {{> 'madness.skill-sheet-readonly' item=item}}
   {{/if}}
   
 </form>

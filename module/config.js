@@ -10,17 +10,17 @@ madness.colors = {
 }
 
 madness.formulas = {
-  healthPoints: {
-    max: '@{healthPoints.base} + 3 * @{stats.constitution.total}',
-    actual: '@{healthPoints.max} - @{healthPoints.missing}',
+  hp: {
+    max: '@{attributes.hp.base} + 3 * @{stats.constitution.total}',
+    value: '@{attributes.hp.max} - @{attributes.hp.missing}',
   },
-  manaPoints: {
-    max: '@{manaPoints.base} + 3 * @{stats.intelligence.total}',
-    actual: '@{manaPoints.max} - @{manaPoints.missing}',
+  mp: {
+    max: '@{attributes.mp.base} + 3 * @{stats.intelligence.total}',
+    value: '@{attributes.mp.max} - @{attributes.mp.missing}',
   },
   magic: {
-    doka: '_min(@{magic.ome},@{magic.teruuk})',
-    natah: '_min(@{magic.ome},@{magic.erah},@{magic.sith},@{magic.shor},@{magic.teruuk})'
+    doka: '_min(@{magic.ome.value},@{magic.teruuk.value})',
+    natah: '_min(@{magic.ome.value},@{magic.erah.value},@{magic.sith.value},@{magic.shor.value},@{magic.teruuk.value})'
   },
   stats: {
     total: '@{stats.key.base} + @{stats.key.mod}',

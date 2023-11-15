@@ -10,7 +10,7 @@
       "secondaryStats": "Statistiques secondaires",
       "modStats": "Modificateurs",
       "actualStats": "Statistiques actuelles",
-      "healthPoints": "Points de vie",
+      "hitPoints": "Points de vie",
       "manaPoints": "Points de mana",
       "stats": {
         "intelligence": "Intelligence",
