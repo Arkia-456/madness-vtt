@@ -1,6 +1,6 @@
-import MadnessDice from "../utils/MadnessDice.js";
-import { madness } from "../config.js";
-import Formula from "../formulas/Formula.js";
+import MadnessDice from '../utils/MadnessDice.js';
+import { madness } from '../config.js';
+import Formula from '../formulas/Formula.js';
 
 export default class MadnessItem extends Item {
 

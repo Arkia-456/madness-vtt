@@ -1,6 +1,5 @@
-import MadnessChat from './module/MadnessChat.js';
-import MadnessMacro from './module/MadnessMacro.js';
-import MadnessSystem from './module/MadnessSystem.js';
+import MadnessChat from './module/utils/MadnessChat.js';
+import MadnessSystem from './module/utils/MadnessSystem.js';
 
 Hooks.once('init', async () => {
   globalThis.madness = Object.assign(game.system, globalThis.madness);

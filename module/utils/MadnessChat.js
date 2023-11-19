@@ -1,6 +1,4 @@
-import MadnessActor from "./MadnessActor.js";
-import MadnessDice from "./MadnessDice.js";
-import MadnessItem from "./MadnessItem.js";
+import MadnessDice from './MadnessDice.js';
 
 export default class MadnessChat {
 

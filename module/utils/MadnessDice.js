@@ -1,5 +1,5 @@
-import { madness } from "../config.js";
-import Formula from "../formulas/Formula.js";
+import { madness } from '../config.js';
+import Formula from '../formulas/Formula.js';
 
 export default class MadnessDice {
 

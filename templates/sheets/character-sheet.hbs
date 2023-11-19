@@ -210,7 +210,7 @@
       <div>{{localize "madness.item.damage"}}</div>
     </div>
     {{#each skills as |skill id|}}
-      {{> 'madness.skill-card' item=skill inSheet=true}}
+      {{> "madness.skill-card" item=skill inSheet=true}}
     {{/each}}
   </section>
   <section class="container">
@@ -221,7 +221,7 @@
         <div>{{localize "madness.item.magazine"}}</div>
       </div>
       {{#each weapons as |weapon id|}}
-        {{> 'madness.weapon-card' weapon inSheet=true}}
+        {{> "madness.weapon-card" weapon inSheet=true}}
       {{/each}}
   </section>
 </form>

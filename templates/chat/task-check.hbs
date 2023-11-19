@@ -1,9 +1,9 @@
 <div class="task-check {{#if isAttack}}attack{{/if}}">
   {{#if isAttack}}
-    {{> 'madness.attack-check' item=item}}
+    {{> "madness.attack-check" item=item}}
   {{/if}}
   {{#if isStatCheck}}
-    {{> 'madness.stat-check' statName=statName}}
+    {{> "madness.stat-check" statName=statName}}
   {{/if}}
   <div>
     {{roll.total}}
