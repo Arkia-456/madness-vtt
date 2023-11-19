@@ -38,18 +38,33 @@
         "natah": "Natah"
       }
     },
+    "d": "d",
+    "hp": "PV",
     "item": {
       "weight": "Poids",
       "magazine": "Chargeur",
       "damage": "Dégâts",
+      "damageCalculation": "Calcul des dégâts",
       "damageDice": "Jets de dégâts",
       "description": "Description",
+      "flatDamage": "Dégâts plats",
       "range": "Portée",
       "requirements": "Prérequis",
       "skill": {
         "manaCost": "Coût en mana"
       }
     },
+    "magic": {
+      "ome": "Omé",
+      "erah": "Erah",
+      "sith": "Sith",
+      "shor": "Shor",
+      "teruuk": "Teruuk",
+      "doka": "Doka",
+      "natah": "Natah"
+    },
+    "m": "m",
+    "mp": "PM",
     "sheet": {
       "addSkill": "Créer une compétence",
       "details": "Détails",

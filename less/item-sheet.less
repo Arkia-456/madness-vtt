@@ -1,0 +1,75 @@
+.madness.sheet.item {
+
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+
+    .resume {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+
+      .sheet-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    
+        .item-name {
+          display: flex;
+          flex-direction: column;
+    
+          .requirements {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+    
+          }
+        }
+      }
+
+      .sheet-content {
+        flex: 1;
+
+        .editor.prosemirror {
+          height: 300px;
+        }
+
+        .editor-content {
+          min-height: 100px;
+        }
+
+        .costs {
+
+          .cost {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+
+            input {
+              width: auto;
+            }
+          }
+        }
+
+        .damage {
+
+          .damage-roll {
+            display: flex;
+            flex-direction: row;
+          }
+        }
+      }
+    }
+
+    .effects {
+      flex: 1;
+      min-width: 300px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import MadnessDice from '../MadnessDice.js';
-import MadnessUtils from '../MadnessUtils.js';
+import MadnessDice from '../utils/MadnessDice.js';
+import MadnessUtils from '../utils/MadnessUtils.js';
 
 export default class MadnessCharacterSheet extends ActorSheet {
 
@@ -70,7 +70,6 @@ export default class MadnessCharacterSheet extends ActorSheet {
       statName: event.currentTarget.dataset.statName
     });
   }
-
 
   _onItemRoll(event) {
     const element = event.currentTarget;

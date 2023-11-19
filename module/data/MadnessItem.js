@@ -1,14 +1,19 @@
-import MadnessDice from "./MadnessDice.js";
-import { madness } from "./config.js";
-import Formula from "./formulas/Formula.js";
+import MadnessDice from "../utils/MadnessDice.js";
+import { madness } from "../config.js";
+import Formula from "../formulas/Formula.js";
 
 export default class MadnessItem extends Item {
+
+  async _preCreate(data, options, userId) {
+    await super._preCreate(data, options, userId);
+    await this.updateSource({ 'ownership.default': 2 })
+  }
 
   _rangeMeasuredTemplate;
 
   async attack(attacker) {
     if (this.type === 'skill') {
-      if (attacker.system.attributes.mp.value < this.system.cost) {
+      if (attacker.system.attributes.mp.value < this.system.cost.mp) {
         const notEnoughManaTemplate = 'systems/madness/templates/chat/not-enough-mana.hbs';
         const notEnoughManaData = {
           item: this,
@@ -22,9 +27,9 @@ export default class MadnessItem extends Item {
         });
         return;
       }
-      await attacker.removeManaPoints(this.system.cost);
+      await attacker.removeManaPoints(this.system.cost.mp);
     }
-    const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damageRoll))).compute({...attacker.system.stats, damage: this.system.damage}).computed;
+    const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damage.roll))).compute({...attacker.system.stats, damage: this.system.damage.base}).computed;
     MadnessDice.taskCheck({
       actor: attacker,
       rollFormula: damageRollFormula,

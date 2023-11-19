@@ -94,15 +94,27 @@
     "templates": {
       "itemCommon": {
         "description": "",
-        "damage": 0
+        "damage": {
+          "base": 0,
+          "roll": {
+            "intelligence": 0,
+            "constitution": 0,
+            "dexterity": 0,
+            "agility": 0,
+            "strength": 0
+          }
+        }
       }
     },
+    "htmlFields": ["description"],
     "skill": {
       "templates": [
         "itemCommon"
       ],
-      "cost": 0,
+      "costs": {},
       "requirements": {
+        "magic1": {},
+        "magic2": {},
         "ome": 1,
         "erah": 1,
         "sith": 1,

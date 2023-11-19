@@ -1,5 +1,5 @@
-import { madness } from './config.js';
-import Formula from './formulas/Formula.js';
+import { madness } from '../config.js';
+import Formula from '../formulas/Formula.js';
 
 export default class MadnessActor extends Actor {
 
@@ -99,7 +99,7 @@ export default class MadnessActor extends Actor {
   }
 
   async _preUpdate(changed, options, user) {
-    this._attributesChanged(changed.system.attributes);
+    this._attributesChanged(changed.system?.attributes);
     await super._preUpdate(changed, options, user);
   }
 

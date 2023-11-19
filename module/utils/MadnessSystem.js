@@ -1,13 +1,16 @@
-import MadnessActor from './MadnessActor.js';
-import MadnessItem from './MadnessItem.js';
-import MadnessCharacterSheet from './sheets/MadnessCharacterSheet.js';
-import MadnessItemSheet from './sheets/MadnessItemSheet.js';
+import MadnessActor from '../data/MadnessActor.js';
+import MadnessItem from '../data/MadnessItem.js';
+import MadnessSidebar from '../apps/sidebar/MadnessSidebar.js';
+import { madness } from '../config.js';
+import MadnessCharacterSheet from '../forms/MadnessCharacterSheet.js';
+import MadnessItemSheet from '../forms/MadnessItemSheet.js';
 
 export default class MadnessSystem {
 
   static async preloadHandlebarsTemplates() {
     const partialsPath  = 'systems/madness/templates/partials';
     const partials = [
+      'item-description.hbs',
       'skill-card.hbs',
       'skill-chat.hbs',
       'skill-sheet-editable.hbs',
@@ -35,6 +38,7 @@ export default class MadnessSystem {
   }
 
   static registerConfigurationValues() {
+    CONFIG.madness = madness;
     CONFIG.debug.custom = true;
     CONFIG.Item.documentClass = MadnessItem;
     CONFIG.Actor.documentClass = MadnessActor;
@@ -54,5 +58,5 @@ export default class MadnessSystem {
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('madness', MadnessItemSheet, { makeDefault: true });
   }
-  
+
 }

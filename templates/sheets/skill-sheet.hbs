@@ -1,8 +1,0 @@
-<form class="{{cssClass}}" autocomplete="off">
-  {{#if (or user.isGM item.actor.isOwner)}}
-    {{> 'madness.skill-sheet-editable' item=item}}
-  {{else}}
-    {{> 'madness.skill-sheet-readonly' item=item}}
-  {{/if}}
-  
-</form>

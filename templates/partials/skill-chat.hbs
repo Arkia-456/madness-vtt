@@ -13,21 +13,21 @@
 <p>{{localize "madness.character.magic.doka"}} : {{item.system.requirements.doka}}</p>
 <p>{{localize "madness.character.magic.natah"}} : {{item.system.requirements.natah}}</p>
 <h3>{{localize "madness.item.damageDice"}}</h3>
-{{#if item.system.damageRoll.intelligence}}
-  <p>{{item.system.damageRoll.intelligence}} d {{localize "madness.character.stats.intelligence"}}</p>
+{{#if item.system.damage.roll.intelligence}}
+  <p>{{item.system.damage.roll.intelligence}} d {{localize "madness.character.stats.intelligence"}}</p>
 {{/if}}
-{{#if item.system.damageRoll.constitution}}
-  <p>{{item.system.damageRoll.constitution}} d {{localize "madness.character.stats.constitution"}}</p>
+{{#if item.system.damage.roll.constitution}}
+  <p>{{item.system.damage.roll.constitution}} d {{localize "madness.character.stats.constitution"}}</p>
 {{/if}}
-{{#if item.system.damageRoll.dexterity}}
-  <p>{{item.system.damageRoll.dexterity}} d {{localize "madness.character.stats.dexterity"}}</p>
+{{#if item.system.damage.roll.dexterity}}
+  <p>{{item.system.damage.roll.dexterity}} d {{localize "madness.character.stats.dexterity"}}</p>
 {{/if}}
-{{#if item.system.damageRoll.agility}}
-  <p>{{item.system.damageRoll.agility}} d {{localize "madness.character.stats.agility"}}</p>
+{{#if item.system.damage.roll.agility}}
+  <p>{{item.system.damage.roll.agility}} d {{localize "madness.character.stats.agility"}}</p>
 {{/if}}
-{{#if item.system.damageRoll.strength}}
-  <p>{{item.system.damageRoll.strength}} d {{localize "madness.character.stats.strength"}}</p>
+{{#if item.system.damage.roll.strength}}
+  <p>{{item.system.damage.roll.strength}} d {{localize "madness.character.stats.strength"}}</p>
 {{/if}}
-<p>{{localize "madness.item.damage"}} : {{item.system.damage}}</p>
+<p>{{localize "madness.item.damage"}} : {{item.system.damage.base}}</p>
 <p>{{localize "madness.item.range"}} : {{item.system.range}}</p>
-<p>{{localize "madness.item.skill.manaCost"}} : {{item.system.cost}}</p>
+<p>{{localize "madness.item.skill.manaCost"}} : {{item.system.cost.mp}}</p>

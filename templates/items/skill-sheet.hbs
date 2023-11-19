@@ -1,0 +1,101 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <section class="resume">
+    <header class="sheet-header">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+      <div class="item-name">
+        <h1>
+          <input name="name" type="text" value="{{item.name}}" placeholder="Name" />
+        </h1>
+        <div class="requirements">
+          <select name="system.requirements.magic1.type">
+            {{#select system.requirements.magic1.type}}
+              {{#each config.magics as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+              {{/each}}
+            {{/select}}
+          </select>
+          <input name="system.requirements.magic1.value" type="text" value="{{system.requirements.magic1.value}}" data-dtype="Number" />
+          <select name="system.requirements.magic2.type">
+            {{#select system.requirements.magic2.type}}
+              {{#each config.magics as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+              {{/each}}
+            {{/select}}
+          </select>
+          <input name="system.requirements.magic2.value" type="text" value="{{system.requirements.magic2.value}}" data-dtype="Number" />
+        </div>
+      </div>
+    </header>
+    <div class="sheet-content">
+      {{> "madness.item-description"}}
+      <div class="costs">
+        <div class="cost mp">
+          <input name="system.cost.mp" type="text" value="{{system.cost.mp}}" data-dtype="Number" />
+          <span>{{localize "madness.mp"}}</span>
+        </div>
+        <div class="cost hp">
+          <input name="system.cost.hp" type="text" value="{{system.cost.hp}}" data-dtype="Number" />
+          <span>{{localize "madness.hp"}}</span>
+        </div>
+      </div>
+      <p>{{localize "madness.item.range"}} : <input name="system.range" type="text" value="{{system.range}}" data-dtype="Number" /> {{localize "madness.m"}}</p>
+      <div class="damage">{{localize "madness.item.damageCalculation"}} :
+        {{#if editable}}
+          <div class="damage-roll">
+            {{localize "madness.item.flatDamage"}} : <input name="system.damage.base" type="text" value="{{system.damage.base}}" data-dtype="Number" />
+          </div>
+          <div class="damage-roll">
+            <input name="system.damage.roll.agility" type="text" value="{{system.damage.roll.agility}}" data-dtype="Number" />
+            {{localize "madness.d"}}
+            {{localize "madness.character.stats.agility"}}
+          </div>
+          <div class="damage-roll">
+            <input name="system.damage.roll.constitution" type="text" value="{{system.damage.roll.constitution}}" data-dtype="Number" />
+            {{localize "madness.d"}}
+            {{localize "madness.character.stats.constitution"}}
+          </div>
+          <div class="damage-roll">
+            <input name="system.damage.roll.dexterity" type="text" value="{{system.damage.roll.dexterity}}" data-dtype="Number" />
+            {{localize "madness.d"}}
+            {{localize "madness.character.stats.dexterity"}}
+          </div>
+          <div class="damage-roll">
+            <input name="system.damage.roll.intelligence" type="text" value="{{system.damage.roll.intelligence}}" data-dtype="Number" />
+            {{localize "madness.d"}}
+            {{localize "madness.character.stats.intelligence"}}
+          </div>
+          <div class="damage-roll">
+            <input name="system.damage.roll.strength" type="text" value="{{system.damage.roll.strength}}" data-dtype="Number" />
+            {{localize "madness.d"}}
+            {{localize "madness.character.stats.strength"}}
+          </div>
+        {{else}}
+        {{localize "madness.item.flatDamage"}}
+        {{/if}}
+      </div>
+    </div>
+  </section>
+  <section class="effects">
+    <table class="item-list effects-list">
+      <tr>
+        <th>Effect</th>
+        <th>
+          <button class="effect-control" data-action="create"><i class="fas fa-plus"></i></button>
+        </th>
+      </tr>
+      {{#each effects as |effect|}}
+      <tr class ="item-effect" data-effect-id="{{effect.id}}">
+        <td class="item-name effect-name">
+          <h4>{{effect.name}}</h4>
+        </td>
+        <td>
+          <button class="effect-control" data-action="edit" title="{{localize 'madness.EffectEdit'}}"><i class="fas fa-edit"></i></button>
+        </td>
+        <td>
+          <button class="effect-control" data-action="delete" title="{{localize 'madness.EffectDelete'}}"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </section>
+</form>

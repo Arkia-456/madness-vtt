@@ -1,11 +1,3 @@
-<header class="sheet-header">
-  <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
-  <h1>
-    <input name="name" type="text" value="{{item.name}}" placeholder="Name" />
-  </h1>
-</header>
-<h3>{{localize "madness.item.description"}}</h3>
-<input name="item.system.description" type="text" value="{{item.system.description}}" placeholder="Description" />
 <h3>{{localize "madness.item.requirements"}}</h3>
 <table>
   <thead>
@@ -60,35 +52,35 @@
   <tbody>
     <tr>
       <td>
-        <input name="system.damageRoll.intelligence" type="text" value="{{system.damageRoll.intelligence}}"
+        <input name="system.damage.roll.intelligence" type="text" value="{{system.damage.roll.intelligence}}"
           data-dtype="Number" />
       </td>
       <td>
-        <input name="system.damageRoll.constitution" type="text" value="{{system.damageRoll.constitution}}"
+        <input name="system.damage.roll.constitution" type="text" value="{{system.damage.roll.constitution}}"
           data-dtype="Number" />
       </td>
       <td>
-        <input name="system.damageRoll.dexterity" type="text" value="{{system.damageRoll.dexterity}}"
+        <input name="system.damage.roll.dexterity" type="text" value="{{system.damage.roll.dexterity}}"
           data-dtype="Number" />
       </td>
       <td>
-        <input name="system.damageRoll.agility" type="text" value="{{system.damageRoll.agility}}" data-dtype="Number" />
+        <input name="system.damage.roll.agility" type="text" value="{{system.damage.roll.agility}}" data-dtype="Number" />
       </td>
       <td>
-        <input name="system.damageRoll.strength" type="text" value="{{system.damageRoll.strength}}"
+        <input name="system.damage.roll.strength" type="text" value="{{system.damage.roll.strength}}"
           data-dtype="Number" />
       </td>
     </tr>
   </tbody>
 </table>
 <p>
-  {{localize "madness.item.damage"}} : <input name="system.damage" type="text" value="{{system.damage}}"
+  {{localize "madness.item.damage"}} : <input name="system.damage.base" type="text" value="{{system.damage.base}}"
     data-dtype="Number" />
 </p>
 <p>
   {{localize "madness.item.range"}} : <input name="system.range" type="text" value="{{system.range}}" data-dtype="Number" />
 </p>
 <p>
-  {{localize "madness.item.skill.manaCost"}} : <input name="system.cost" type="text" value="{{system.cost}}"
+  {{localize "madness.item.skill.manaCost"}} : <input name="system.cost.mp" type="text" value="{{system.cost.mp}}"
     data-dtype="Number" />
 </p>

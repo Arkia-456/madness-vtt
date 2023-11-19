@@ -43,6 +43,16 @@ madness.formulas = {
   }
 }
 
+madness.magics = {
+  ome: 'madness.magic.ome',
+  erah: 'madness.magic.erah',
+  sith: 'madness.magic.sith',
+  shor: 'madness.magic.shor',
+  teruuk: 'madness.magic.teruuk',
+  doka: 'madness.magic.doka',
+  natah: 'madness.magic.natah',
+}
+
 madness.thresholds = {
   criticalFail: 95
 }
