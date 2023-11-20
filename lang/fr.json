@@ -1,5 +1,6 @@
 {
   "madness": {
+    "active": "Actif",
     "character": {
       "firstName": "Prénom",
       "age": "Âge",
@@ -12,6 +13,7 @@
       "actualStats": "Statistiques actuelles",
       "hitPoints": "Points de vie",
       "manaPoints": "Points de mana",
+      "passiveEffects": "Passifs personnels",
       "stats": {
         "intelligence": "Intelligence",
         "constitution": "Physique",
@@ -39,6 +41,9 @@
       }
     },
     "d": "d",
+    "effect": {
+      "disabled": "Effect désactivé"
+    },
     "hp": "PV",
     "item": {
       "weight": "Poids",

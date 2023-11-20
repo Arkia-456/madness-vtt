@@ -5,13 +5,9 @@ export default class MadnessActor extends Actor {
 
   // Prepare data
 
-  prepareBaseData() {
-    super.prepareBaseData();
+  prepareDerivedData() {
     this._calculateStats();
     this._calculateMagic();
-  }
-
-  prepareDerivedData() {
     super.prepareDerivedData();
     this._prepareAttributesPoints();
   }

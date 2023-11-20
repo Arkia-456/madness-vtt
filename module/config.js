@@ -1,5 +1,20 @@
 export const madness = {};
 
+madness.activeEffectChanges = {
+  'system.stats.agility.mod': 'madness.character.stats.agility',
+  'system.stats.constitution.mod': 'madness.character.stats.constitution',
+  'system.stats.dexterity.mod': 'madness.character.stats.dexterity',
+  'system.stats.intelligence.mod': 'madness.character.stats.intelligence',
+  'system.stats.strength.mod': 'madness.character.stats.strength',
+  'system.stats.critRate.mod': 'madness.character.stats.critRate',
+  'system.stats.evadeRate.mod': 'madness.character.stats.evadeRate',
+  'system.stats.initiativeBonus.mod': 'madness.character.stats.initiativeBonus',
+  'system.stats.maxEquipmentWeight.mod': 'madness.character.stats.maxEquipmentWeight',
+  'system.stats.maxMoveDistance.mod': 'madness.character.stats.maxMoveDistance',
+  'system.stats.maxWeight.mod': 'madness.character.stats.maxWeight',
+  'system.stats.parryDamageReduction.mod': 'madness.character.stats.parryDamageReduction',
+}
+
 madness.colors = {
   item: {
     range: {

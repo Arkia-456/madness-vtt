@@ -31,6 +31,30 @@
       </tr>
     </table>
   </header>
+  <section>
+    <table>
+      <tr>
+        <th colspan="2">{{localize "madness.character.passiveEffects"}}</th>
+        <th>{{localize "madness.active"}}</th>
+        <th>
+          <button class="effect-control" data-action="create"><i class="fas fa-plus"></i></button>
+        </th>
+      </tr>
+      {{#each effects as |effect|}}
+      <tr class ="actor-effect" data-effect-id="{{effect.id}}">
+        <td class="effect-name">
+          {{effect.name}}
+        </td>
+        <td>
+          {{effect.description}}
+        </td>
+        <td>
+          <button class="effect-toggle"><i class="fas {{#if effect.disabled}}fa-times{{else}}fa-check{{/if}}"></i></button>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </section>
   <div>
     <table>
       <thead>
