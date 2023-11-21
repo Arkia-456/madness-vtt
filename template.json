@@ -114,14 +114,7 @@
       "costs": {},
       "requirements": {
         "magic1": {},
-        "magic2": {},
-        "ome": 1,
-        "erah": 1,
-        "sith": 1,
-        "shor": 1,
-        "teruuk": 1,
-        "doka": 1,
-        "natah": 1
+        "magic2": {}
       },
       "damageRoll": {
         "intelligence": 0,

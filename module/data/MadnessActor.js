@@ -84,11 +84,13 @@ export default class MadnessActor extends Actor {
   _checkRequirements(skill) {
     let requirementMet = true;
     const skillRequirements = skill.system.requirements;
-    for (const [key, value] of Object.entries(skillRequirements)) {
-      const actorMagicLevel = this.system.magic[key].value;
-      if (actorMagicLevel < value) {
-        requirementMet = false;
-        break;
+    for (const magic of Object.values(skillRequirements)) {
+      if (magic.type && magic.value) {
+        const actorMagicLevel = this.system.magic[magic.type]?.value || -1;
+        if (actorMagicLevel < magic.value) {
+          requirementMet = false;
+          break;
+        }
       }
     }
     return requirementMet;
