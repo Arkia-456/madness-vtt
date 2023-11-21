@@ -9,6 +9,7 @@
         <div class="requirements">
           <select name="system.requirements.magic1.type">
             {{#select system.requirements.magic1.type}}
+              <option value=""></option>
               {{#each config.magics as |name type|}}
                 <option value="{{type}}">{{localize name}}</option>
               {{/each}}
@@ -17,6 +18,7 @@
           <input name="system.requirements.magic1.value" type="text" value="{{system.requirements.magic1.value}}" data-dtype="Number" />
           <select name="system.requirements.magic2.type">
             {{#select system.requirements.magic2.type}}
+              <option value=""></option>
               {{#each config.magics as |name type|}}
                 <option value="{{type}}">{{localize name}}</option>
               {{/each}}
