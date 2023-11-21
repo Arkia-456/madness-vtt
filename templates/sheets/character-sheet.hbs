@@ -67,17 +67,17 @@
       <tbody>
         <tr>
           <th>{{localize "madness.character.hitPoints"}}</th>
+          <td>{{system.attributes.hp.max}}</td>
+          <td></td>
           <td><input name="system.attributes.hp.value" type="text" value="{{system.attributes.hp.value}}"
               data-dtype="Number" /></td>
-          <td></td>
-          <td>{{system.attributes.hp.max}}</td>
         </tr>
         <tr>
           <th>{{localize "madness.character.manaPoints"}}</th>
+          <td>{{system.attributes.mp.max}}</td>
+          <td></td>
           <td><input name="system.attributes.mp.value" type="text" value="{{system.attributes.mp.value}}"
               data-dtype="Number" /></td>
-          <td></td>
-          <td>{{system.attributes.mp.max}}</td>
         </tr>
         <tr>
           <th class="stat-roll" data-stat-name="intelligence" data-statvalue="{{system.stats.intelligence.base}}" data-modvalue="{{system.stats.intelligence.mod}}">{{localize "madness.character.stats.intelligence"}}</th>
