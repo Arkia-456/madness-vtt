@@ -58,6 +58,45 @@ madness.formulas = {
   }
 }
 
+madness.magicActiveEffects = {
+  ome: {
+    effect: 'decreaseSkillMPCost',
+    name: 'madness.magic.ome',
+    description: 'madness.effect.description.decreaseSkillMPCost',
+    value: 2
+  },
+  erah: {
+    effect: 'increaseSkillDamageAndCritFailRate',
+    name: 'madness.magic.erah',
+    description: 'madness.effect.description.increaseSkillDamageAndCritFailRate',
+    value: 6
+  },
+  sith: {
+    effect: 'increaseSkillCritRate',
+    name: 'madness.magic.sith',
+    description: 'madness.effect.description.increaseSkillCritRate',
+    value: 10
+  },
+  shor: {
+    effect: 'generateShield',
+    name: 'madness.magic.shor',
+    description: 'madness.effect.description.generateShield',
+    value: 2
+  },
+  teruuk: {
+    effect: 'increaseSkillRange',
+    name: 'madness.magic.teruuk',
+    description: 'madness.effect.description.increaseSkillRange',
+    value: 8
+  },
+  derion: {
+    effect: 'increaseSkillDamage',
+    name: 'madness.magic.derion',
+    description: 'madness.effect.description.increaseSkillDamage',
+    value: 2
+  },
+}
+
 madness.magics = {
   ome: 'madness.magic.ome',
   erah: 'madness.magic.erah',
@@ -66,6 +105,7 @@ madness.magics = {
   teruuk: 'madness.magic.teruuk',
   doka: 'madness.magic.doka',
   natah: 'madness.magic.natah',
+  derion: 'madness.magic.derion',
 }
 
 madness.thresholds = {

@@ -9,6 +9,60 @@ export default class MadnessItem extends Item {
     await this.updateSource({ 'ownership.default': 2 })
   }
 
+  async _onUpdate(changed, options, user) {
+    this._updateMagicActiveEffects(changed);
+    await super._onUpdate(changed, options, user);
+  }
+
+  _updateMagicActiveEffects(data) {
+    const magicRequirements = data.system?.requirements;
+    const magic1TypeChange = magicRequirements?.magic1?.type;
+    const magic2TypeChange = magicRequirements?.magic2?.type;
+
+    const hasMagic1TypeChanged = magic1TypeChange !== undefined;
+    const hasMagic2TypeChanged = magic2TypeChange !== undefined;
+    if (!hasMagic1TypeChanged && !hasMagic2TypeChanged) return;
+
+    const magic1Type = magic1TypeChange ?? this.system.requirements.magic1.type;
+    const magic2Type = magic2TypeChange ?? this.system.requirements.magic2.type;
+    const isMonomagic = this._isMonomagic(magic1Type, magic2Type);
+
+    const magicActiveEffectsToAdd = [];
+    const magicActiveEffectsToRemove = [];
+    magicActiveEffectsToRemove.push(...this.effects.filter(effect => effect.flags.hasOwnProperty('magicType')).map(effect => effect.id));
+    if (isMonomagic) {
+      magicActiveEffectsToAdd.push(this._onMagicTypeChange(0, magic1Type || magic2Type));
+    } else {
+      magicActiveEffectsToAdd.push(this._onMagicTypeChange(1, magic1Type));
+      magicActiveEffectsToAdd.push(this._onMagicTypeChange(2, magic2Type));
+    }
+    this.deleteEmbeddedDocuments('ActiveEffect', magicActiveEffectsToRemove);
+    this.createEmbeddedDocuments('ActiveEffect', magicActiveEffectsToAdd.filter(Boolean));
+  }
+
+  _isMonomagic(magic1, magic2) {
+    return !magic1 || !magic2 || magic1 === magic2;
+  }
+
+  _onMagicTypeChange(magicOrder, magicType) {
+    const activeEffect = madness.magicActiveEffects[magicType];
+    return activeEffect
+      ? {
+        name: game.i18n.localize(activeEffect.name) ?? 'New effect',
+        description: game.i18n.localize(activeEffect.description) ?? '',
+        icon: activeEffect.icon ?? 'icons/svg/aura.svg',
+        origin: this.uuid,
+        disabled: false,
+        transfer: false,
+        flags: { 
+          magicOrder: magicOrder,
+          magicType: magicType,
+          value: magicOrder === 0 ? activeEffect.value : activeEffect.value / 2
+        }
+      }
+      : null ;
+  }
+
   _rangeMeasuredTemplate;
 
   async attack(attacker) {

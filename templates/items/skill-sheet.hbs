@@ -78,7 +78,7 @@
   <section class="effects">
     <table class="item-list effects-list">
       <tr>
-        <th>Effect</th>
+        <th colspan="2">Effect</th>
         <th>
           <button class="effect-control" data-action="create"><i class="fas fa-plus"></i></button>
         </th>
@@ -87,6 +87,10 @@
       <tr class ="item-effect" data-effect-id="{{effect.id}}">
         <td class="item-name effect-name">
           <h4>{{effect.name}}</h4>
+          <p>{{effect.description}}</p>
+        </td>
+        <td class="item-name effect-name">
+          <p>{{effect.flags.value}}</p>
         </td>
         <td>
           <button class="effect-control" data-action="edit" title="{{localize "madness.EffectEdit"}}"><i class="fas fa-edit"></i></button>

@@ -20,10 +20,13 @@ export default class MadnessItemSheet extends ItemSheet {
     // System configuration
     context.config = CONFIG.madness;
 
+    const effects = item.effects;
+    const sortedEffects = new Collection(this._sortCollectionContents(effects))
+
     // Item rendering data
     foundry.utils.mergeObject(context, {
       system: item.system,
-      effects: item.effects
+      effects: sortedEffects
     });
 
     
@@ -34,6 +37,15 @@ export default class MadnessItemSheet extends ItemSheet {
     });
     
     return context;
+  }
+
+  _sortCollectionContents(collection) {
+    return Object.entries(collection.contents)
+      .sort(([keyA, valueA], [keyB, valueB]) => {
+        const magicOrderA = valueA.flags.magicOrder || Infinity;
+        const magicOrderB = valueB.flags.magicOrder || Infinity;
+        return magicOrderA - magicOrderB;
+      });
   }
 
   activateListeners(html) {

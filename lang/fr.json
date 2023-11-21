@@ -42,7 +42,15 @@
     },
     "d": "d",
     "effect": {
-      "disabled": "Effect désactivé"
+      "disabled": "Effect désactivé",
+      "description": {
+        "decreaseSkillMPCost": "Réduit le coût de mana de la compétence",
+        "generateShield": "Génère un bouclier",
+        "increaseSkillCritRate": "Augmente le taux de critique de la compétence",
+        "increaseSkillDamage": "Augmente les dégâts de la compétence",
+        "increaseSkillDamageAndCritFailRate": "Augmente les dégâts et le taux d'échec critique de la compétence",
+        "increaseSkillRange": "Augmente la portée de la compétence"
+      }
     },
     "hp": "PV",
     "item": {
@@ -66,7 +74,8 @@
       "shor": "Shor",
       "teruuk": "Teruuk",
       "doka": "Doka",
-      "natah": "Natah"
+      "natah": "Natah",
+      "derion": "Dérion"
     },
     "m": "m",
     "mp": "PM",
