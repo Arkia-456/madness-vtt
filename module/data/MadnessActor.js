@@ -44,6 +44,7 @@ export default class MadnessActor extends Actor {
 
   _calculateMagic() {
     this._calculateCombinedMagics();
+    this._getCommonMagicSkills();
   }
 
   _calculateCombinedMagics() {
