@@ -14,7 +14,8 @@
           "value": 15,
           "base": 15,
           "missing": 0,
-          "max": null
+          "max": null,
+          "temp": 0
         },
         "mp": {
           "value": 15,

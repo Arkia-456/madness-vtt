@@ -123,14 +123,32 @@ export default class MadnessActor extends Actor {
 
   async _removeAttributePoints(attribute, damage) {
     const attr = this.system.attributes[attribute];
-    const actualDamage = Math.clamped(damage, 0, attr.max);
+    const updates = {};
+    let remainingDamage = damage;
+
+    // Deduct damage from temp HP first
+    const tmp = attr.temp;
+    if (tmp) {
+      const deltaTmp = Math.min(tmp, damage);
+      updates[`system.attributes.${attribute}.temp`] = tmp - deltaTmp;
+      remainingDamage -= deltaTmp;
+    }
+
+    const actualDamage = Math.clamped(remainingDamage, 0, attr.max);
     const delta = attr.value - actualDamage;
     const missing = attr.missing + actualDamage;
-    const updates = {};
     updates[`system.attributes.${attribute}.value`] = delta;
     updates[`system.attributes.${attribute}.missing`] = missing;
     await this.update(updates);
     return delta;
+  }
+
+  async applyTempHP(amount) {
+    const hp = this.system.attributes.hp;
+    const tmp = hp.temp;
+    if (amount > tmp) {
+      await this.update({ 'system.attributes.hp.temp': amount });
+    }
   }
 
   // Combat
