@@ -69,7 +69,9 @@ export default class MadnessItem extends Item {
 
   async attack(attacker) {
     if (this.type === 'skill') {
-      if (attacker.system.attributes.mp.value < this.system.cost.mp) {
+      let manaCost = this.system.cost.mp;
+      manaCost -= this.getActiveEffectMPCostReduction();
+      if (attacker.system.attributes.mp.value < manaCost) {
         const notEnoughManaTemplate = 'systems/madness/templates/chat/not-enough-mana.hbs';
         const notEnoughManaData = {
           item: this,
@@ -83,7 +85,7 @@ export default class MadnessItem extends Item {
         });
         return;
       }
-      await attacker.removeManaPoints(this.system.cost.mp);
+      await attacker.removeManaPoints(manaCost);
     }
     const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damage.roll))).compute({...attacker.system.stats, damage: this.system.damage.base}).computed;
     MadnessDice.taskCheck({
@@ -149,6 +151,11 @@ export default class MadnessItem extends Item {
 
   getActiveEffectCritBonus() {
     const effect = this.getEffect('increaseSkillCritRate');
+    return effect ? effect.flags.value : 0;
+  }
+
+  getActiveEffectMPCostReduction() {
+    const effect = this.getEffect('decreaseSkillMPCost');
     return effect ? effect.flags.value : 0;
   }
 
