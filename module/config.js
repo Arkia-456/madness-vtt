@@ -54,7 +54,7 @@ madness.formulas = {
   roll: {
     statCheck: '1d@value',
     default: '1d100',
-    damage: (array) => array.reduce((prev, curr) => `${prev} + ${curr[1]}d@{${curr[0]}.total}`, '@{damage}')
+    damage: (array) => array.reduce((prev, curr) => `${prev} + ${curr[1]??0}d@{${curr[0]}.total}`, '@{damage}')
   }
 }
 
