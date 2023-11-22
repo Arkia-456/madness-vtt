@@ -58,11 +58,13 @@ export default class MadnessDice {
     const rollFormula = madness.formulas.roll.default;
     const rollResult = await new Roll(rollFormula).roll({ async: true });
     let critMod = 0;
+    let critFailMod = 0;
     if (item) {
       critMod += item.getActiveEffectCritBonus();
+      critFailMod = item.getActiveEffectDamageAndCritFailBonus();
     }
-    const isCriticalFail = rollResult.total > madness.thresholds.criticalFail;
     const isCriticalSuccess = rollResult.total <= actor.system.stats.critRate.total + critMod;
+    const isCriticalFail = rollResult.total > madness.thresholds.criticalFail - critFailMod;
     await MadnessDice.toCustomMessage(actor, rollResult, messageTemplate, {
       isCriticalSuccess: isCriticalSuccess,
       isCriticalFail: isCriticalFail

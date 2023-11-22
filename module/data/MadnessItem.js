@@ -87,7 +87,9 @@ export default class MadnessItem extends Item {
       }
       await attacker.removeManaPoints(manaCost);
     }
-    const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damage.roll))).compute({...attacker.system.stats, damage: this.system.damage.base}).computed;
+    let baseDamage = this.system.damage.base;
+    baseDamage += this.getActiveEffectDamageAndCritFailBonus();
+    const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damage.roll))).compute({...attacker.system.stats, damage: baseDamage}).computed;
     MadnessDice.taskCheck({
       actor: attacker,
       rollFormula: damageRollFormula,
@@ -156,6 +158,11 @@ export default class MadnessItem extends Item {
 
   getActiveEffectMPCostReduction() {
     const effect = this.getEffect('decreaseSkillMPCost');
+    return effect ? effect.flags.value : 0;
+  }
+
+  getActiveEffectDamageAndCritFailBonus() {
+    const effect = this.getEffect('increaseSkillDamageAndCritFailRate');
     return effect ? effect.flags.value : 0;
   }
 
