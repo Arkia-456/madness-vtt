@@ -1,6 +1,7 @@
 import MadnessDice from '../utils/MadnessDice.js';
 import { madness } from '../config.js';
 import Formula from '../formulas/Formula.js';
+import MadnessUtils from '../utils/MadnessUtils.js';
 
 export default class MadnessItem extends Item {
 
@@ -139,5 +140,15 @@ export default class MadnessItem extends Item {
       whisper: game.users.filter(user => this.actor.testUserPermission(user, 'OWNER'))
     };
     return ChatMessage.create(chatData);
+  }
+
+  static onItemCardCriticClick(card) {
+    const { actor, item } = MadnessUtils.getActorAndItemFromCard(card);
+    MadnessDice.rollCritDice(actor, item);
+  }
+
+  getActiveEffectCritBonus() {
+    const effect = this.effects.find(effect => effect.flags.effect === 'increaseSkillCritRate');
+    return effect ? effect.flags.value : 0;
   }
 }

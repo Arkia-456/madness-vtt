@@ -1,3 +1,4 @@
+import MadnessItem from '../data/MadnessItem.js';
 import MadnessDice from './MadnessDice.js';
 
 export default class MadnessChat {
@@ -11,8 +12,7 @@ export default class MadnessChat {
 
   static onItemCritic(event) {
     const card = event.currentTarget.closest('.item');
-    const {actor: attacker} = MadnessChat._getActorAndItem(card);
-    MadnessDice.rollCritDice(attacker);
+    MadnessItem.onItemCardCriticClick(card);
   }
 
   static onItemAttack(event) {
