@@ -55,6 +55,7 @@ export default class MadnessItem extends Item {
         disabled: false,
         transfer: false,
         flags: { 
+          effect: activeEffect.effect,
           magicOrder: magicOrder,
           magicType: magicType,
           value: magicOrder === 0 ? activeEffect.value : activeEffect.value / 2
@@ -124,6 +125,8 @@ export default class MadnessItem extends Item {
   async roll() {
     const cardData = {
       item: this,
+      magic1Type: game.i18n.localize(`madness.magic.${this.system.requirements.magic1.type}`),
+      magic2Type: game.i18n.localize(`madness.magic.${this.system.requirements.magic2.type}`),
       id: this.id,
       ownerId: this.actor.id,
       owner: game.actors.get(this.actor.id)

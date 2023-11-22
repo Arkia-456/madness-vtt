@@ -1,0 +1,67 @@
+  <section class="resume">
+    <header class="sheet-header">
+      <img src="{{item.img}}" title="{{item.name}}" height="64" width="64" />
+      <div class="item-name">
+        <h1>{{item.name}}</h1>
+        <div class="requirements">
+          {{#if item.system.requirements.magic1.type}}
+            <p>{{magic1Type}} : {{item.system.requirements.magic1.value}}</p>
+          {{/if}}
+          {{#if item.system.requirements.magic2.type}}
+            <p>{{magic2Type}} : {{item.system.requirements.magic2.value}}</p>
+          {{/if}}
+        </div>
+      </div>
+    </header>
+    <div class="sheet-content">
+      <p>{{item.system.description}}</p>
+      <div class="costs">
+        {{#if item.system.cost.mp}}
+          <p>{{item.system.cost.mp}}{{localize "madness.mp"}}</p>
+        {{/if}}
+        {{#if item.system.cost.hp}}
+          <p>{{item.system.cost.hp}}{{localize "madness.hp"}}</p>
+        {{/if}}
+      </div>
+      <p>{{localize "madness.item.range"}} : {{item.system.range}} {{localize "madness.m"}}</p>
+      <p class="damage">
+        {{localize "madness.item.damageCalculation"}} :<br />
+        {{#if item.system.damage.base}}
+          {{item.system.damage.base}}<br />
+        {{/if}}
+        {{#if item.system.damage.roll.agility}}
+          {{item.system.damage.roll.agility}} {{localize "madness.d"}} {{localize "madness.character.stats.agility"}}<br />
+        {{/if}}
+        {{#if item.system.damage.roll.constitution}}
+          {{item.system.damage.roll.constitution}} {{localize "madness.d"}} {{localize "madness.character.stats.constitution"}}<br />
+        {{/if}}
+        {{#if item.system.damage.roll.dexterity}}
+          {{item.system.damage.roll.dexterity}} {{localize "madness.d"}} {{localize "madness.character.stats.dexterity"}}<br />
+        {{/if}}
+        {{#if item.system.damage.roll.intelligence}}
+          {{item.system.damage.roll.intelligence}} {{localize "madness.d"}} {{localize "madness.character.stats.intelligence"}}<br />
+        {{/if}}
+        {{#if item.system.damage.roll.strength}}
+          {{item.system.damage.roll.strength}} {{localize "madness.d"}} {{localize "madness.character.stats.strength"}}<br />
+        {{/if}}
+      </p>
+    </div>
+  </section>
+  <section class="effects">
+    <table class="item-list effects-list">
+      <tr>
+        <th colspan="2">Effect</th>
+      </tr>
+      {{#each item.effects as |effect|}}
+      <tr class ="item-effect" data-effect-id="{{effect.id}}">
+        <td class="item-name effect-name">
+          <h4>{{effect.name}}</h4>
+          <p>{{effect.description}}</p>
+        </td>
+        <td class="item-name effect-name">
+          <p>{{effect.flags.value}}</p>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </section>

@@ -9,8 +9,23 @@ import MadnessActiveEffectConfig from '../forms/MadnessActiveEffectConfig.js';
 export default class MadnessSystem {
 
   static async preloadHandlebarsTemplates() {
-    const partialsPath  = 'systems/madness/templates/partials';
-    const partials = [
+    const templatesPath  = 'systems/madness/templates';
+
+    const appPartials = {
+      chat: [
+        'skill-card.hbs'
+      ]
+    };
+
+    const paths = {};
+
+    Object.entries(appPartials).forEach(([folder, partials]) => {
+      partials.forEach(partial => {
+        paths[`madness.${folder}.${partial.replace('.hbs', '')}`] = `${templatesPath}/${folder}/partials/${partial}`;
+      });
+    });
+
+    const orphPartials = [
       'item-description.hbs',
       'skill-card.hbs',
       'skill-chat.hbs',
@@ -20,9 +35,8 @@ export default class MadnessSystem {
       'stat-check.hbs',
       'weapon-card.hbs'
     ];
-    const paths = {};
-    partials.forEach(partial => {
-      paths[`madness.${partial.replace('.hbs', '')}`] = `${partialsPath}/${partial}`;
+    orphPartials.forEach(partial => {
+      paths[`madness.${partial.replace('.hbs', '')}`] = `${templatesPath}/partials/${partial}`;
     });
     return await loadTemplates(paths);
   }
