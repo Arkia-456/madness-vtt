@@ -105,13 +105,14 @@ export default class MadnessItem extends Item {
       const tokens = [...canvas.tokens.controlled];
       if (tokens.length) {
         const [token] = tokens;
+        const itemRange = this.system.range + this.getActiveEffectRangeBonus();
         const templateData = {
           t: 'circle',
           user: game.user.id,
           x: token.center.x,
           y: token.center.y,
           direction: 0,
-          distance: this.system.range || 0.1,
+          distance: itemRange || 0.1,
           fillColor: madness.colors.item.range.fillColor,
           borderColor: madness.colors.item.range.borderColor
         };
@@ -163,6 +164,11 @@ export default class MadnessItem extends Item {
 
   getActiveEffectDamageAndCritFailBonus() {
     const effect = this.getEffect('increaseSkillDamageAndCritFailRate');
+    return effect ? effect.flags.value : 0;
+  }
+
+  getActiveEffectRangeBonus() {
+    const effect = this.getEffect('increaseSkillRange');
     return effect ? effect.flags.value : 0;
   }
 
