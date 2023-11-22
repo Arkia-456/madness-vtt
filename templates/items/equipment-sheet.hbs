@@ -1,0 +1,54 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <section class="resume">
+    <header class="sheet-header">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+      <div class="item-name">
+        <h1>
+          <input name="name" type="text" value="{{item.name}}" placeholder="Name" />
+        </h1>
+        <div class="slots">
+          <select name="system.slot">
+            {{#select system.slot}}
+              <option value=""></option>
+              {{#each config.equipmentSlots as |name slot|}}
+                <option value="{{slot}}">{{localize name}}</option>
+              {{/each}}
+            {{/select}}
+          </select>
+        </div>
+      </div>
+    </header>
+    <div class="sheet-content">
+      {{> "madness.item-description"}}
+      <p>{{localize "madness.armor"}} : <input name="system.armor" type="text" value="{{system.armor}}" data-dtype="Number" /></p>
+      <p>{{localize "madness.weight"}} : <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number" /></p>
+    </div>
+  </section>
+  <section class="effects">
+    <table class="item-list effects-list">
+      <tr>
+        <th colspan="2">Effect</th>
+        <th>
+          <button class="effect-control" data-action="create"><i class="fas fa-plus"></i></button>
+        </th>
+      </tr>
+      {{#each effects as |effect|}}
+      <tr class ="item-effect" data-effect-id="{{effect.id}}">
+        <td class="item-name effect-name">
+          <h4>{{effect.name}}</h4>
+          <p>{{effect.description}}</p>
+        </td>
+        <td class="item-name effect-name">
+          <p>{{effect.flags.value}}</p>
+        </td>
+        <td>
+          <button class="effect-control" data-action="edit" title="{{localize "madness.EffectEdit"}}"><i class="fas fa-edit"></i></button>
+        </td>
+        <td>
+          <button class="effect-control" data-action="delete" title="{{localize "madness.EffectDelete"}}"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </section>
+</form>

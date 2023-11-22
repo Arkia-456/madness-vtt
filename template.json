@@ -90,7 +90,8 @@
   "Item": {
     "types": [
       "skill",
-      "weapon"
+      "weapon",
+      "equipment"
     ],
     "templates": {
       "itemCommon": {
@@ -105,6 +106,9 @@
             "strength": 0
           }
         }
+      },
+      "physicalItem": {
+        "weight": 0
       }
     },
     "htmlFields": ["description"],
@@ -129,6 +133,15 @@
     "weapon": {
       "weight": 0,
       "magazine": 0
+    },
+    "equipment": {
+      "templates": [
+        "itemCommon",
+        "physicalItem"
+      ],
+      "armor": 0,
+      "slot": "",
+      "equipped": false
     }
   }
 }

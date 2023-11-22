@@ -24,6 +24,12 @@ madness.colors = {
   }
 }
 
+madness.equipmentSlots = {
+  head: 'madness.equipment.slot.head',
+  body: 'madness.equipment.slot.body',
+  legs: 'madness.equipment.slot.legs'
+}
+
 madness.formulas = {
   hp: {
     max: '@{attributes.hp.base} + 3 * @{stats.constitution.total}',
