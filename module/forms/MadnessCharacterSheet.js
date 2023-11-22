@@ -5,7 +5,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
 
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      template: 'systems/madness/templates/sheets/character-sheet.hbs',
+      template: 'systems/madness/templates/characters/character-sheet.hbs',
       classes: ['madness', 'sheet']
     });
   }
