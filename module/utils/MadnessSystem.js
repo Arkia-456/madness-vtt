@@ -15,6 +15,9 @@ export default class MadnessSystem {
     const appPartials = {
       chat: [
         'skill-card.hbs'
+      ],
+      items: [
+        'item-description.hbs'
       ]
     };
 
@@ -27,7 +30,6 @@ export default class MadnessSystem {
     });
 
     const orphPartials = [
-      'item-description.hbs',
       'skill-card.hbs',
       'skill-chat.hbs',
       'skill-sheet-editable.hbs',
