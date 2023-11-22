@@ -4,6 +4,7 @@ import MadnessSidebar from '../apps/sidebar/MadnessSidebar.js';
 import { madness } from '../config.js';
 import MadnessCharacterSheet from '../forms/MadnessCharacterSheet.js';
 import MadnessItemSheet from '../forms/MadnessItemSheet.js';
+import MadnessActiveEffect from '../data/MadnessActiveEffect.js';
 import MadnessActiveEffectConfig from '../forms/MadnessActiveEffectConfig.js';
 
 export default class MadnessSystem {
@@ -57,6 +58,7 @@ export default class MadnessSystem {
     CONFIG.debug.custom = true;
     CONFIG.Item.documentClass = MadnessItem;
     CONFIG.Actor.documentClass = MadnessActor;
+    CONFIG.ActiveEffect.documentClass = MadnessActiveEffect;
     DocumentSheetConfig.registerSheet(ActiveEffect, 'madness', MadnessActiveEffectConfig, { makeDefault: true });
   }
 

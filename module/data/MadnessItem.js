@@ -153,23 +153,19 @@ export default class MadnessItem extends Item {
   }
 
   getActiveEffectCritBonus() {
-    const effect = this.getEffect('increaseSkillCritRate');
-    return effect ? effect.flags.value : 0;
+    return this.getEffect('increaseSkillCritRate')?.getValue() || 0;
   }
 
   getActiveEffectMPCostReduction() {
-    const effect = this.getEffect('decreaseSkillMPCost');
-    return effect ? effect.flags.value : 0;
+    return this.getEffect('decreaseSkillMPCost')?.getValue() || 0;
   }
 
   getActiveEffectDamageAndCritFailBonus() {
-    const effect = this.getEffect('increaseSkillDamageAndCritFailRate');
-    return effect ? effect.flags.value : 0;
+    return this.getEffect('increaseSkillDamageAndCritFailRate')?.getValue() || 0;
   }
 
   getActiveEffectRangeBonus() {
-    const effect = this.getEffect('increaseSkillRange');
-    return effect ? effect.flags.value : 0;
+    return this.getEffect('increaseSkillRange')?.getValue() || 0;
   }
 
   getEffect(effectKey) {
