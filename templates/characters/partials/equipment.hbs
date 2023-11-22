@@ -1,0 +1,17 @@
+<div class="row item" data-item-id="{{_id}}">
+  <div>{{equipment.name}}</div>
+  <div>{{localize "madness.armor"}} : {{equipment.system.armor}}</div>
+  <div>{{localize "madness.weight"}} : {{equipment.system.weight}}</div>
+  <div>{{localize "madness.equipped"}} : {{equipment.system.equipped}}</div>
+  {{#each equipment.effects as |effect|}}
+  <tr class="item-effect" data-effect-id="{{effect.id}}">
+    <td class="item-name effect-name">
+      <h4>{{effect.name}}</h4>
+      <p>{{effect.description}}</p>
+    </td>
+    <td class="item-name effect-name">
+      <p>{{effect.flags.value}}</p>
+    </td>
+  </tr>
+  {{/each}}
+</div>

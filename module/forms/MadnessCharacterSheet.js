@@ -45,6 +45,7 @@ export default class MadnessCharacterSheet extends ActorSheet {
       effects: baseData.actor.effects.filter(effect => !effect.origin.includes('.Item.')),
       system: baseData.actor.system,
       skills: baseData.items.filter(item => item.type === 'skill'),
+      equipments: baseData.items.filter(item => item.type === 'equipment'),
       weapons: baseData.items.filter(item => item.type === 'weapon'),
       config: CONFIG.madness
     };

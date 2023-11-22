@@ -13,6 +13,11 @@ export default class MadnessSystem {
     const templatesPath  = 'systems/madness/templates';
 
     const appPartials = {
+      characters: [
+        'equipment.hbs',
+        'equipments.hbs',
+        'inventory.hbs'
+      ],
       chat: [
         'skill-card.hbs'
       ],

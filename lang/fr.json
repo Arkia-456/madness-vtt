@@ -41,6 +41,8 @@
         "natah": "Natah"
       },
       "skills": "Compétences",
+      "equipments": "Équipements",
+      "inventory": "Inventaire",
       "weapons": "Armes"
     },
     "d": "d",
