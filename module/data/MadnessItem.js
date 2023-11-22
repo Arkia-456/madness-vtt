@@ -148,7 +148,11 @@ export default class MadnessItem extends Item {
   }
 
   getActiveEffectCritBonus() {
-    const effect = this.effects.find(effect => effect.flags.effect === 'increaseSkillCritRate');
+    const effect = this.getEffect('increaseSkillCritRate');
     return effect ? effect.flags.value : 0;
+  }
+
+  getEffect(effectKey) {
+    return this.effects.find(effect => effect.flags.effect === effectKey);
   }
 }
