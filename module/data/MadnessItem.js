@@ -96,6 +96,7 @@ export default class MadnessItem extends Item {
 
     let baseDamage = this.system.damage.base;
     baseDamage += this.getActiveEffectDamageAndCritFailBonus();
+    baseDamage += this.getActiveEffectDamageBonus();
     const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damage.roll))).compute({...attacker.system.stats, damage: baseDamage}).computed;
     MadnessDice.taskCheck({
       actor: attacker,
@@ -181,6 +182,10 @@ export default class MadnessItem extends Item {
 
   getActiveEffectGenerateShield() {
     return this.getEffect('generateShield')?.getValue() || 0;
+  }
+
+  getActiveEffectDamageBonus() {
+    return this.getEffect('increaseSkillDamage')?.getValue() || 0;
   }
 
   getEffect(effectKey) {
