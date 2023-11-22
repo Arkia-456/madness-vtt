@@ -12,7 +12,7 @@ export default class MadnessChat {
 
   static onItemCritic(event) {
     const card = event.currentTarget.closest('.item');
-    MadnessItem.onItemCardCriticClick(card);
+    MadnessItem.rollCrit(card);
   }
 
   static onItemAttack(event) {

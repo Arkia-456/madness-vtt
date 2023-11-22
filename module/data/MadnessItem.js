@@ -142,7 +142,7 @@ export default class MadnessItem extends Item {
     return ChatMessage.create(chatData);
   }
 
-  static onItemCardCriticClick(card) {
+  static rollCrit(card) {
     const { actor, item } = MadnessUtils.getActorAndItemFromCard(card);
     MadnessDice.rollCritDice(actor, item);
   }
