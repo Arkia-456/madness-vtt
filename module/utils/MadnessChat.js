@@ -24,13 +24,13 @@ export default class MadnessChat {
   static onItemAttackMouseOver(event) {
     const card = event.currentTarget.closest('.item');
     const {item} = MadnessChat._getActorAndItem(card);
-    item.showRange();
+    item?.showRange();
   }
 
   static onItemAttackMouseOut(event) {
     const card = event.currentTarget.closest('.item');
     const {item} = MadnessChat._getActorAndItem(card);
-    item.hideRange();
+    item?.hideRange();
   }
 
   static _getActorAndItem(card) {
