@@ -87,6 +87,13 @@ export default class MadnessItem extends Item {
       }
       await attacker.removeManaPoints(manaCost);
     }
+
+    // Manage effects on attack
+    const shieldActiveEffect = this.getActiveEffectGenerateShield();
+    if (shieldActiveEffect) {
+      await this.generateShield(attacker, shieldActiveEffect);
+    }
+
     let baseDamage = this.system.damage.base;
     baseDamage += this.getActiveEffectDamageAndCritFailBonus();
     const damageRollFormula = new Formula(madness.formulas.roll.damage(Object.entries(this.system.damage.roll))).compute({...attacker.system.stats, damage: baseDamage}).computed;
@@ -152,6 +159,10 @@ export default class MadnessItem extends Item {
     MadnessDice.rollCritDice(actor, item);
   }
 
+  async generateShield(actor, amount) {
+    await actor.applyTempHP(amount);
+  }
+
   getActiveEffectCritBonus() {
     return this.getEffect('increaseSkillCritRate')?.getValue() || 0;
   }
@@ -166,6 +177,10 @@ export default class MadnessItem extends Item {
 
   getActiveEffectRangeBonus() {
     return this.getEffect('increaseSkillRange')?.getValue() || 0;
+  }
+
+  getActiveEffectGenerateShield() {
+    return this.getEffect('generateShield')?.getValue() || 0;
   }
 
   getEffect(effectKey) {
